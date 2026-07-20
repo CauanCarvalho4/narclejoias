@@ -93,6 +93,10 @@
 </head>
 <body>
 
+<div id="loadError" style="display:none;position:fixed;top:0;left:0;right:0;z-index:100;background:#3a1418;color:#f4ece0;padding:14px 18px;font-size:0.85rem;text-align:center;border-bottom:1px solid #a8384c;">
+  Não foi possível carregar o sistema (Firebase). Se você estiver vendo isso dentro da prévia do chat, abra o arquivo direto no navegador ou publique no Netlify pra testar de verdade. Se já estiver fora da prévia, verifique sua internet e recarregue a página.
+</div>
+
 <div id="loginScreen">
   <div class="login-card">
     <h1>NarCle</h1>
@@ -100,7 +104,7 @@
     <div class="setup-note">
       Acesso restrito. Contas são criadas manualmente no Firebase pelo desenvolvedor — não há cadastro público.
     </div>
-    <form id="loginForm">
+    <form id="loginForm" onsubmit="event.preventDefault();">
       <label for="email">E-mail</label>
       <input type="email" id="email" required autocomplete="username">
       <label for="senha">Senha</label>
@@ -293,6 +297,15 @@
   </div>
 </div>
 
+<script>
+  // Se o módulo do Firebase (mais abaixo) não conseguir carregar, isso
+  // mostra um aviso claro em vez de deixar a tela em branco sem explicação.
+  window.systemReady = false;
+  setTimeout(() => {
+    if(!window.systemReady) document.getElementById('loadError').style.display = 'block';
+  }, 4000);
+</script>
+
 <script type="module">
   import { firebaseConfig } from './firebase-config.js';
   import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
@@ -327,6 +340,9 @@
   });
 
   document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
+
+  window.systemReady = true;
+  document.getElementById('loadError').style.display = 'none';
 
   onAuthStateChanged(auth, (user) => {
     if(user){
