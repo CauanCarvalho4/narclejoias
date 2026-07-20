@@ -1,1114 +1,671 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NarCle · Painel Administrativo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      :root {
-        --bg: #0b0a0c;
-        --bg-soft: #141114;
-        --bg-card: #1a1517;
-        --ivory: #f4ece0;
-        --ivory-dim: #c9beac;
-        --muted: #8f8578;
-        --gold: #c9a24a;
-        --gold-light: #f1d78c;
-        --wine: #a8384c;
-        --line: rgba(201, 162, 74, 0.22);
-        --danger: #c24a4a;
-        --ok: #4a9a6a;
-      }
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      body {
-        background: var(--bg);
-        color: var(--ivory-dim);
-        font-family: "Jost", sans-serif;
-        font-weight: 300;
-        min-height: 100vh;
-      }
-      h1,
-      h2 {
-        font-family: "Cormorant Garamond", serif;
-        color: var(--ivory);
-        font-weight: 700;
-      }
-      input,
-      select,
-      button,
-      textarea {
-        font-family: "Jost", sans-serif;
-      }
-      a {
-        color: var(--gold-light);
-      }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NarCle · Painel Administrativo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a0c; --bg-soft:#141114; --bg-card:#1a1517;
+    --ivory:#f4ece0; --ivory-dim:#c9beac; --muted:#8f8578;
+    --gold:#c9a24a; --gold-light:#f1d78c;
+    --wine:#a8384c; --line:rgba(201,162,74,0.22);
+    --danger:#c24a4a; --ok:#4a9a6a;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background:var(--bg);color:var(--ivory-dim);font-family:'Jost',sans-serif;font-weight:300;min-height:100vh;}
+  h1,h2{font-family:'Cormorant Garamond',serif;color:var(--ivory);font-weight:700;}
+  input,select,button,textarea{font-family:'Jost',sans-serif;}
+  a{color:var(--gold-light);}
 
-      #loginScreen {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-      }
-      .login-card {
-        background: var(--bg-card);
-        border: 1px solid var(--line);
-        padding: 36px 26px;
-        width: 100%;
-        max-width: 380px;
-      }
-      .login-card h1 {
-        font-size: 1.7rem;
-        margin-bottom: 6px;
-        text-align: center;
-      }
-      .login-card p.sub {
-        color: var(--muted);
-        font-size: 0.83rem;
-        text-align: center;
-        margin-bottom: 22px;
-      }
-      label {
-        font-size: 0.7rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--muted);
-        display: block;
-        margin-bottom: 6px;
-      }
-      input,
-      select,
-      textarea {
-        width: 100%;
-        background: #0f0d0e;
-        border: 1px solid var(--line);
-        color: var(--ivory);
-        padding: 11px 13px;
-        margin-bottom: 14px;
-        font-size: 0.9rem;
-      }
-      input:focus,
-      select:focus,
-      textarea:focus {
-        outline: 1px solid var(--gold);
-      }
-      .btn {
-        padding: 11px 18px;
-        font-size: 0.74rem;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
-        border: none;
-        cursor: pointer;
-        transition: transform 0.2s;
-      }
-      .btn-gold {
-        background: linear-gradient(135deg, var(--gold-light), var(--gold));
-        color: #151009;
-        font-weight: 600;
-        width: 100%;
-      }
-      .btn-gold:hover {
-        transform: translateY(-1px);
-      }
-      .btn-ghost {
-        background: none;
-        border: 1px solid var(--line);
-        color: var(--ivory-dim);
-      }
-      .btn-danger {
-        background: var(--danger);
-        color: #fff;
-        padding: 7px 12px;
-        font-size: 0.68rem;
-      }
-      #loginError {
-        color: var(--danger);
-        font-size: 0.8rem;
-        margin-top: -6px;
-        margin-bottom: 12px;
-        min-height: 1em;
-      }
-      .setup-note {
-        background: #141114;
-        border: 1px solid var(--line);
-        padding: 13px 15px;
-        font-size: 0.76rem;
-        color: var(--muted);
-        margin-bottom: 18px;
-        line-height: 1.5;
-      }
+  #loginScreen{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px;}
+  .login-card{background:var(--bg-card);border:1px solid var(--line);padding:36px 26px;width:100%;max-width:380px;}
+  .login-card h1{font-size:1.7rem;margin-bottom:6px;text-align:center;}
+  .login-card p.sub{color:var(--muted);font-size:0.83rem;text-align:center;margin-bottom:22px;}
+  label{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:6px;}
+  input,select,textarea{width:100%;background:#0f0d0e;border:1px solid var(--line);color:var(--ivory);padding:11px 13px;margin-bottom:14px;font-size:0.9rem;}
+  input:focus,select:focus,textarea:focus{outline:1px solid var(--gold);}
+  .btn{padding:11px 18px;font-size:0.74rem;letter-spacing:0.1em;text-transform:uppercase;border:none;cursor:pointer;transition:transform 0.2s;}
+  .btn-gold{background:linear-gradient(135deg,var(--gold-light),var(--gold));color:#151009;font-weight:600;width:100%;}
+  .btn-gold:hover{transform:translateY(-1px);}
+  .btn-ghost{background:none;border:1px solid var(--line);color:var(--ivory-dim);}
+  .btn-danger{background:var(--danger);color:#fff;padding:7px 12px;font-size:0.68rem;}
+  #loginError{color:var(--danger);font-size:0.8rem;margin-top:-6px;margin-bottom:12px;min-height:1em;}
+  .setup-note{background:#141114;border:1px solid var(--line);padding:13px 15px;font-size:0.76rem;color:var(--muted);margin-bottom:18px;line-height:1.5;}
 
-      #dashboard {
-        display: none;
-      }
-      .topbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 16px 18px;
-        border-bottom: 1px solid var(--line);
-        background: var(--bg-soft);
-        position: sticky;
-        top: 0;
-        z-index: 20;
-      }
-      .topbar .word {
-        font-family: "Cormorant Garamond", serif;
-        font-weight: 700;
-        font-size: 1.2rem;
-      }
-      .topbar .who {
-        font-size: 0.76rem;
-        color: var(--muted);
-        display: none;
-      }
-      .layout {
-        display: flex;
-        flex-direction: column;
-        min-height: calc(100vh - 60px);
-      }
-      .side {
-        display: flex;
-        overflow-x: auto;
-        border-bottom: 1px solid var(--line);
-        background: var(--bg-soft);
-      }
-      .side button {
-        flex-shrink: 0;
-        background: none;
-        border: none;
-        color: var(--muted);
-        padding: 14px 18px;
-        font-size: 0.78rem;
-        cursor: pointer;
-        transition:
-          color 0.2s,
-          border-color 0.2s;
-        border-bottom: 2px solid transparent;
-        white-space: nowrap;
-      }
-      .side button.active {
-        color: var(--gold-light);
-        border-color: var(--gold);
-      }
-      main {
-        flex: 1;
-        padding: 22px 16px 60px;
-      }
-      main h2 {
-        font-size: 1.5rem;
-        margin-bottom: 4px;
-      }
-      main > p.hint {
-        color: var(--muted);
-        font-size: 0.82rem;
-        margin-bottom: 22px;
-      }
-      .panel {
-        display: none;
-      }
-      .panel.active {
-        display: block;
-      }
+  #dashboard{display:none;}
+  .topbar{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--line);background:var(--bg-soft);position:sticky;top:0;z-index:20;}
+  .topbar .word{font-family:'Cormorant Garamond',serif;font-weight:700;font-size:1.2rem;}
+  .topbar .who{font-size:0.76rem;color:var(--muted);display:none;}
+  .layout{display:flex;flex-direction:column;min-height:calc(100vh - 60px);}
+  .side{display:flex;overflow-x:auto;border-bottom:1px solid var(--line);background:var(--bg-soft);}
+  .side button{flex-shrink:0;background:none;border:none;color:var(--muted);padding:14px 18px;font-size:0.78rem;cursor:pointer;transition:color 0.2s,border-color 0.2s;border-bottom:2px solid transparent;white-space:nowrap;}
+  .side button.active{color:var(--gold-light);border-color:var(--gold);}
+  main{flex:1;padding:22px 16px 60px;}
+  main h2{font-size:1.5rem;margin-bottom:4px;}
+  main > p.hint{color:var(--muted);font-size:0.82rem;margin-bottom:22px;}
+  .panel{display:none;}
+  .panel.active{display:block;}
 
-      @media (min-width: 760px) {
-        .topbar .who {
-          display: inline;
-        }
-        .layout {
-          flex-direction: row;
-        }
-        .side {
-          flex-direction: column;
-          overflow-x: visible;
-          border-bottom: none;
-          border-right: 1px solid var(--line);
-          width: 190px;
-          flex-shrink: 0;
-          padding: 18px 0;
-        }
-        .side button {
-          border-bottom: none;
-          border-left: 2px solid transparent;
-          padding: 12px 22px;
-          text-align: left;
-        }
-        .side button.active {
-          border-color: var(--gold);
-          background: var(--bg-card);
-        }
-        main {
-          padding: 32px 36px;
-          max-width: 900px;
-        }
-      }
+  @media (min-width:760px){
+    .topbar .who{display:inline;}
+    .layout{flex-direction:row;}
+    .side{flex-direction:column;overflow-x:visible;border-bottom:none;border-right:1px solid var(--line);width:190px;flex-shrink:0;padding:18px 0;}
+    .side button{border-bottom:none;border-left:2px solid transparent;padding:12px 22px;text-align:left;}
+    .side button.active{border-color:var(--gold);background:var(--bg-card);}
+    main{padding:32px 36px;max-width:900px;}
+  }
 
-      /* visão geral */
-      .stat-cards {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 12px;
-        margin-bottom: 28px;
-      }
-      .stat-cards .card {
-        background: var(--bg-card);
-        border: 1px solid var(--line);
-        padding: 18px;
-      }
-      .stat-cards .card b {
-        font-family: "Cormorant Garamond", serif;
-        font-size: 2rem;
-        color: var(--gold-light);
-        display: block;
-      }
-      .stat-cards .card span {
-        font-size: 0.7rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--muted);
-      }
-      @media (min-width: 600px) {
-        .stat-cards {
-          grid-template-columns: repeat(4, 1fr);
-        }
-      }
+  /* visão geral */
+  .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
+  .stat-cards .card{background:var(--bg-card);border:1px solid var(--line);padding:18px;}
+  .stat-cards .card b{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold-light);display:block;}
+  .stat-cards .card span{font-size:0.7rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);}
+  @media (min-width:600px){.stat-cards{grid-template-columns:repeat(4,1fr);}}
 
-      form.entry {
-        background: var(--bg-card);
-        border: 1px solid var(--line);
-        padding: 20px;
-        margin-bottom: 24px;
-      }
-      .grid2 {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-      .grid3 {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-      form.entry .full {
-        grid-column: 1 / -1;
-      }
-      @media (min-width: 600px) {
-        .grid2 {
-          grid-template-columns: 1fr 1fr;
-          gap: 0 14px;
-        }
-        .grid3 {
-          grid-template-columns: 1fr 1fr 1fr;
-          gap: 0 14px;
-        }
-      }
+  form.entry{background:var(--bg-card);border:1px solid var(--line);padding:20px;margin-bottom:24px;}
+  .grid2{display:grid;grid-template-columns:1fr;gap:0;}
+  .grid3{display:grid;grid-template-columns:1fr;gap:0;}
+  form.entry .full{grid-column:1 / -1;}
+  @media (min-width:600px){
+    .grid2{grid-template-columns:1fr 1fr;gap:0 14px;}
+    .grid3{grid-template-columns:1fr 1fr 1fr;gap:0 14px;}
+  }
 
-      .photo-row {
-        display: flex;
-        align-items: center;
-        gap: 14px;
-        margin-bottom: 14px;
-        flex-wrap: wrap;
-      }
-      .photo-preview {
-        width: 64px;
-        height: 64px;
-        background: #0f0d0e;
-        border: 1px solid var(--line);
-        object-fit: cover;
-        flex-shrink: 0;
-      }
-      .upload-status {
-        font-size: 0.78rem;
-        color: var(--muted);
-      }
+  .photo-row{display:flex;align-items:center;gap:14px;margin-bottom:14px;flex-wrap:wrap;}
+  .photo-preview{width:64px;height:64px;background:#0f0d0e;border:1px solid var(--line);object-fit:cover;flex-shrink:0;}
+  .upload-status{font-size:0.78rem;color:var(--muted);}
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 0.84rem;
-      }
-      .table-scroll {
-        overflow-x: auto;
-      }
-      th {
-        text-align: left;
-        font-size: 0.68rem;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        color: var(--muted);
-        padding: 9px 10px;
-        border-bottom: 1px solid var(--line);
-        white-space: nowrap;
-      }
-      td {
-        padding: 10px;
-        border-bottom: 1px solid var(--line);
-        vertical-align: middle;
-        white-space: nowrap;
-      }
-      td img {
-        width: 40px;
-        height: 40px;
-        object-fit: cover;
-      }
-      .status-msg {
-        font-size: 0.8rem;
-        margin-top: 8px;
-        min-height: 1.2em;
-      }
-      .status-msg.ok {
-        color: var(--ok);
-      }
-      .status-msg.err {
-        color: var(--danger);
-      }
-      .toolbar {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 10px;
-        margin-bottom: 16px;
-      }
-      .toolbar .btn {
-        width: auto;
-      }
-      .birthday-tag {
-        background: rgba(201, 162, 74, 0.18);
-        color: var(--gold-light);
-        padding: 2px 8px;
-        border-radius: 10px;
-        font-size: 0.68rem;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="loginScreen">
-      <div class="login-card">
-        <h1>NarCle</h1>
-        <p class="sub">Painel administrativo</p>
-        <div class="setup-note">
-          Acesso restrito. Contas são criadas manualmente no Firebase pelo
-          desenvolvedor — não há cadastro público.
+  table{width:100%;border-collapse:collapse;font-size:0.84rem;}
+  .table-scroll{overflow-x:auto;}
+  th{text-align:left;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:var(--muted);padding:9px 10px;border-bottom:1px solid var(--line);white-space:nowrap;}
+  td{padding:10px;border-bottom:1px solid var(--line);vertical-align:middle;white-space:nowrap;}
+  td img{width:40px;height:40px;object-fit:cover;}
+  .status-msg{font-size:0.8rem;margin-top:8px;min-height:1.2em;}
+  .status-msg.ok{color:var(--ok);}
+  .status-msg.err{color:var(--danger);}
+  .toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+  .toolbar .btn{width:auto;}
+  .birthday-tag{background:rgba(201,162,74,0.18);color:var(--gold-light);padding:2px 8px;border-radius:10px;font-size:0.68rem;}
+</style>
+</head>
+<body>
+
+<div id="loginScreen">
+  <div class="login-card">
+    <h1>NarCle</h1>
+    <p class="sub">Painel administrativo</p>
+    <div class="setup-note">
+      Acesso restrito. Contas são criadas manualmente no Firebase pelo desenvolvedor — não há cadastro público.
+    </div>
+    <form id="loginForm">
+      <label for="email">E-mail</label>
+      <input type="email" id="email" required autocomplete="username">
+      <label for="senha">Senha</label>
+      <input type="password" id="senha" required autocomplete="current-password">
+      <p id="loginError"></p>
+      <button class="btn btn-gold" type="submit">Entrar</button>
+    </form>
+  </div>
+</div>
+
+<div id="dashboard">
+  <div class="topbar">
+    <span class="word">NarCle · Admin</span>
+    <div style="display:flex;align-items:center;gap:14px;">
+      <span class="who" id="whoEmail"></span>
+      <button class="btn btn-ghost" id="logoutBtn">Sair</button>
+    </div>
+  </div>
+  <div class="layout">
+    <div class="side">
+      <button class="tab-btn active" data-tab="visao">Visão geral</button>
+      <button class="tab-btn" data-tab="produtos">Produtos</button>
+      <button class="tab-btn" data-tab="promo">Promo do dia</button>
+      <button class="tab-btn" data-tab="config">Configurações</button>
+      <button class="tab-btn" data-tab="depoimentos">Depoimentos</button>
+      <button class="tab-btn" data-tab="clientes">Clientes</button>
+    </div>
+    <main>
+
+      <!-- VISÃO GERAL -->
+      <section class="panel active" id="panel-visao">
+        <h2>Visão geral</h2>
+        <p class="hint">Resumo rápido do que está cadastrado no site agora.</p>
+        <div class="stat-cards">
+          <div class="card"><b id="statProdutos">0</b><span>Produtos</span></div>
+          <div class="card"><b id="statDestaques">0</b><span>Em destaque</span></div>
+          <div class="card"><b id="statDepoimentos">0</b><span>Depoimentos</span></div>
+          <div class="card"><b id="statClientes">0</b><span>Clientes coletados</span></div>
         </div>
-        <form id="loginForm">
-          <label for="email">E-mail</label>
-          <input type="email" id="email" required autocomplete="username" />
-          <label for="senha">Senha</label>
-          <input
-            type="password"
-            id="senha"
-            required
-            autocomplete="current-password"
-          />
-          <p id="loginError"></p>
-          <button class="btn btn-gold" type="submit">Entrar</button>
+        <p class="hint" id="birthdayHint" style="margin-top:10px;"></p>
+      </section>
+
+      <!-- PRODUTOS -->
+      <section class="panel" id="panel-produtos">
+        <h2>Produtos</h2>
+        <p class="hint">O que estiver marcado como "Destaque" aparece na seção Destaques do site.</p>
+        <form class="entry" id="prodForm">
+          <input type="hidden" id="prodId">
+          <div class="photo-row">
+            <img class="photo-preview" id="prodPreview" alt="">
+            <div>
+              <input type="file" id="prodFoto" accept="image/*" style="margin:0;">
+              <p class="upload-status" id="uploadStatus"></p>
+            </div>
+          </div>
+          <div class="grid2">
+            <div><label>Nome</label><input type="text" id="prodNome" required></div>
+            <div><label>Preço (R$)</label><input type="text" id="prodPreco" placeholder="149,90"></div>
+          </div>
+          <div class="grid3">
+            <div>
+              <label>Categoria</label>
+              <select id="prodCategoria">
+                <option value="eventos">Eventos</option>
+                <option value="relogios">Relógios</option>
+                <option value="prata">Prata</option>
+                <option value="semijoias" selected>Semijoias</option>
+              </select>
+            </div>
+            <div>
+              <label>Canal</label>
+              <select id="prodCanal">
+                <option value="ambos" selected>Atacado &amp; Varejo</option>
+                <option value="atacado">Só atacado</option>
+                <option value="varejo">Só varejo</option>
+              </select>
+            </div>
+            <div>
+              <label>Destaque na home?</label>
+              <select id="prodDestaque">
+                <option value="true">Sim</option>
+                <option value="false" selected>Não</option>
+              </select>
+            </div>
+          </div>
+          <input type="hidden" id="prodImagem">
+          <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Salvar produto</button>
+          <button class="btn btn-ghost" type="button" id="prodCancelar" style="width:auto;padding:11px 18px;margin-left:8px;">Cancelar edição</button>
+          <p class="status-msg" id="prodStatus"></p>
         </form>
-      </div>
-    </div>
-
-    <div id="dashboard">
-      <div class="topbar">
-        <span class="word">NarCle · Admin</span>
-        <div style="display: flex; align-items: center; gap: 14px">
-          <span class="who" id="whoEmail"></span>
-          <button class="btn btn-ghost" id="logoutBtn">Sair</button>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th></th><th>Nome</th><th>Preço</th><th>Categoria</th><th>Canal</th><th>Destaque</th><th></th></tr></thead>
+            <tbody id="prodTable"></tbody>
+          </table>
         </div>
-      </div>
-      <div class="layout">
-        <div class="side">
-          <button class="tab-btn active" data-tab="visao">Visão geral</button>
-          <button class="tab-btn" data-tab="produtos">Produtos</button>
-          <button class="tab-btn" data-tab="config">Configurações</button>
-          <button class="tab-btn" data-tab="depoimentos">Depoimentos</button>
-          <button class="tab-btn" data-tab="clientes">Clientes</button>
+      </section>
+
+      <!-- PROMO DO DIA -->
+      <section class="panel" id="panel-promo">
+        <h2>Promo do dia</h2>
+        <p class="hint">Aparece em destaque no topo do site enquanto estiver marcada como ativa. Desative quando a promoção acabar.</p>
+        <form class="entry" id="promoForm">
+          <div class="photo-row">
+            <img class="photo-preview" id="promoPreview" alt="">
+            <div>
+              <input type="file" id="promoFoto" accept="image/*" style="margin:0;">
+              <p class="upload-status" id="promoUploadStatus"></p>
+            </div>
+          </div>
+          <div class="grid2">
+            <div><label>Título da promoção</label><input type="text" id="promoTitulo" placeholder="Ex: Semana da Revendedora"></div>
+            <div><label>Desconto / condição</label><input type="text" id="promoDesconto" placeholder="Ex: 20% off ou 3x sem juros"></div>
+          </div>
+          <div class="full"><label>Descrição curta</label><textarea id="promoDescricao" rows="2" placeholder="Detalhe rápido pra aparecer embaixo do título"></textarea></div>
+          <div class="grid2">
+            <div><label>Válida até</label><input type="date" id="promoValidade"></div>
+            <div>
+              <label>Status</label>
+              <select id="promoAtiva">
+                <option value="true">Ativa (aparece no site)</option>
+                <option value="false" selected>Inativa (escondida)</option>
+              </select>
+            </div>
+          </div>
+          <input type="hidden" id="promoImagem">
+          <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Salvar promo do dia</button>
+          <p class="status-msg" id="promoStatus"></p>
+        </form>
+      </section>
+
+      <!-- CONFIGURAÇÕES -->
+      <section class="panel" id="panel-config">
+        <h2>Configurações do site</h2>
+        <p class="hint">Alimenta o cabeçalho, botões de WhatsApp e Instagram do site.</p>
+        <form class="entry" id="configForm">
+          <div class="grid2">
+            <div><label>Anos de história</label><input type="number" id="cfgAnos"></div>
+            <div><label>WhatsApp (DDI+DDD+número)</label><input type="text" id="cfgWhats" placeholder="5599999999999"></div>
+          </div>
+          <div class="full"><label>Frase de destaque (tagline)</label><input type="text" id="cfgTagline"></div>
+          <div class="full"><label>Texto de apoio do topo</label><textarea id="cfgSub" rows="3"></textarea></div>
+          <div class="grid2">
+            <div><label>Instagram atacado (sem @)</label><input type="text" id="cfgInstaAtacado"></div>
+            <div><label>Instagram varejo (sem @)</label><input type="text" id="cfgInstaVarejo"></div>
+          </div>
+          <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Salvar configurações</button>
+          <p class="status-msg" id="cfgStatus"></p>
+        </form>
+      </section>
+
+      <!-- DEPOIMENTOS -->
+      <section class="panel" id="panel-depoimentos">
+        <h2>Depoimentos</h2>
+        <p class="hint">O site mostra o depoimento mais recente na prova social.</p>
+        <form class="entry" id="testiForm">
+          <div class="full"><label>Depoimento</label><textarea id="testiQuote" rows="3" required></textarea></div>
+          <div class="full"><label>Autor</label><input type="text" id="testiAutor" placeholder="Nome · Loja / Cidade"></div>
+          <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Publicar depoimento</button>
+          <p class="status-msg" id="testiStatus"></p>
+        </form>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Depoimento</th><th>Autor</th><th></th></tr></thead>
+            <tbody id="testiTable"></tbody>
+          </table>
         </div>
-        <main>
-          <!-- VISÃO GERAL -->
-          <section class="panel active" id="panel-visao">
-            <h2>Visão geral</h2>
-            <p class="hint">
-              Resumo rápido do que está cadastrado no site agora.
-            </p>
-            <div class="stat-cards">
-              <div class="card">
-                <b id="statProdutos">0</b><span>Produtos</span>
-              </div>
-              <div class="card">
-                <b id="statDestaques">0</b><span>Em destaque</span>
-              </div>
-              <div class="card">
-                <b id="statDepoimentos">0</b><span>Depoimentos</span>
-              </div>
-              <div class="card">
-                <b id="statClientes">0</b><span>Clientes coletados</span>
-              </div>
-            </div>
-            <p class="hint" id="birthdayHint" style="margin-top: 10px"></p>
-          </section>
+      </section>
 
-          <!-- PRODUTOS -->
-          <section class="panel" id="panel-produtos">
-            <h2>Produtos</h2>
-            <p class="hint">
-              O que estiver marcado como "Destaque" aparece na seção Destaques
-              do site.
-            </p>
-            <form class="entry" id="prodForm">
-              <input type="hidden" id="prodId" />
-              <div class="photo-row">
-                <img class="photo-preview" id="prodPreview" alt="" />
-                <div>
-                  <input
-                    type="file"
-                    id="prodFoto"
-                    accept="image/*"
-                    style="margin: 0"
-                  />
-                  <p class="upload-status" id="uploadStatus"></p>
-                </div>
-              </div>
-              <div class="grid2">
-                <div>
-                  <label>Nome</label
-                  ><input type="text" id="prodNome" required />
-                </div>
-                <div>
-                  <label>Preço (R$)</label
-                  ><input type="text" id="prodPreco" placeholder="149,90" />
-                </div>
-              </div>
-              <div class="grid3">
-                <div>
-                  <label>Categoria</label>
-                  <select id="prodCategoria">
-                    <option value="eventos">Eventos</option>
-                    <option value="relogios">Relógios</option>
-                    <option value="prata">Prata</option>
-                    <option value="semijoias" selected>Semijoias</option>
-                  </select>
-                </div>
-                <div>
-                  <label>Canal</label>
-                  <select id="prodCanal">
-                    <option value="ambos" selected>Atacado &amp; Varejo</option>
-                    <option value="atacado">Só atacado</option>
-                    <option value="varejo">Só varejo</option>
-                  </select>
-                </div>
-                <div>
-                  <label>Destaque na home?</label>
-                  <select id="prodDestaque">
-                    <option value="true">Sim</option>
-                    <option value="false" selected>Não</option>
-                  </select>
-                </div>
-              </div>
-              <input type="hidden" id="prodImagem" />
-              <button
-                class="btn btn-gold"
-                type="submit"
-                style="width: auto; padding: 11px 24px"
-              >
-                Salvar produto
-              </button>
-              <button
-                class="btn btn-ghost"
-                type="button"
-                id="prodCancelar"
-                style="width: auto; padding: 11px 18px; margin-left: 8px"
-              >
-                Cancelar edição
-              </button>
-              <p class="status-msg" id="prodStatus"></p>
-            </form>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Nome</th>
-                    <th>Preço</th>
-                    <th>Categoria</th>
-                    <th>Canal</th>
-                    <th>Destaque</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="prodTable"></tbody>
-              </table>
-            </div>
-          </section>
+      <!-- CLIENTES / LEADS -->
+      <section class="panel" id="panel-clientes">
+        <h2>Clientes</h2>
+        <p class="hint">Contatos coletados pelo formulário de descontos do site — use pra campanhas de aniversário e datas comemorativas.</p>
+        <div class="toolbar">
+          <input type="text" id="leadSearch" placeholder="Buscar por nome..." style="max-width:240px;margin:0;">
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-ghost" id="filterBirthdayMonth" style="width:auto;">Aniversariantes do mês</button>
+            <button class="btn btn-gold" id="exportCsv" style="width:auto;">Exportar CSV</button>
+          </div>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>Nome</th><th>WhatsApp</th><th>Aniversário</th><th>Canal</th><th></th></tr></thead>
+            <tbody id="leadsTable"></tbody>
+          </table>
+        </div>
+      </section>
 
-          <!-- CONFIGURAÇÕES -->
-          <section class="panel" id="panel-config">
-            <h2>Configurações do site</h2>
-            <p class="hint">
-              Alimenta o cabeçalho, botões de WhatsApp e Instagram do site.
-            </p>
-            <form class="entry" id="configForm">
-              <div class="grid2">
-                <div>
-                  <label>Anos de história</label
-                  ><input type="number" id="cfgAnos" />
-                </div>
-                <div>
-                  <label>WhatsApp (DDI+DDD+número)</label
-                  ><input
-                    type="text"
-                    id="cfgWhats"
-                    placeholder="5599999999999"
-                  />
-                </div>
-              </div>
-              <div class="full">
-                <label>Frase de destaque (tagline)</label
-                ><input type="text" id="cfgTagline" />
-              </div>
-              <div class="full">
-                <label>Texto de apoio do topo</label
-                ><textarea id="cfgSub" rows="3"></textarea>
-              </div>
-              <div class="grid2">
-                <div>
-                  <label>Instagram atacado (sem @)</label
-                  ><input type="text" id="cfgInstaAtacado" />
-                </div>
-                <div>
-                  <label>Instagram varejo (sem @)</label
-                  ><input type="text" id="cfgInstaVarejo" />
-                </div>
-              </div>
-              <button
-                class="btn btn-gold"
-                type="submit"
-                style="width: auto; padding: 11px 24px"
-              >
-                Salvar configurações
-              </button>
-              <p class="status-msg" id="cfgStatus"></p>
-            </form>
-          </section>
+    </main>
+  </div>
+</div>
 
-          <!-- DEPOIMENTOS -->
-          <section class="panel" id="panel-depoimentos">
-            <h2>Depoimentos</h2>
-            <p class="hint">
-              O site mostra o depoimento mais recente na prova social.
-            </p>
-            <form class="entry" id="testiForm">
-              <div class="full">
-                <label>Depoimento</label
-                ><textarea id="testiQuote" rows="3" required></textarea>
-              </div>
-              <div class="full">
-                <label>Autor</label
-                ><input
-                  type="text"
-                  id="testiAutor"
-                  placeholder="Nome · Loja / Cidade"
-                />
-              </div>
-              <button
-                class="btn btn-gold"
-                type="submit"
-                style="width: auto; padding: 11px 24px"
-              >
-                Publicar depoimento
-              </button>
-              <p class="status-msg" id="testiStatus"></p>
-            </form>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Depoimento</th>
-                    <th>Autor</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="testiTable"></tbody>
-              </table>
-            </div>
-          </section>
+<script type="module">
+  import { firebaseConfig } from './firebase-config.js';
+  import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+  import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+  import {
+    getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc,
+    onSnapshot, orderBy, query
+  } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+  import { getStorage, ref, uploadBytes, getDownloadURL } from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js';
 
-          <!-- CLIENTES / LEADS -->
-          <section class="panel" id="panel-clientes">
-            <h2>Clientes</h2>
-            <p class="hint">
-              Contatos coletados pelo formulário de descontos do site — use pra
-              campanhas de aniversário e datas comemorativas.
-            </p>
-            <div class="toolbar">
-              <input
-                type="text"
-                id="leadSearch"
-                placeholder="Buscar por nome..."
-                style="max-width: 240px; margin: 0"
-              />
-              <div style="display: flex; gap: 8px">
-                <button
-                  class="btn btn-ghost"
-                  id="filterBirthdayMonth"
-                  style="width: auto"
-                >
-                  Aniversariantes do mês
-                </button>
-                <button class="btn btn-gold" id="exportCsv" style="width: auto">
-                  Exportar CSV
-                </button>
-              </div>
-            </div>
-            <div class="table-scroll">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Nome</th>
-                    <th>WhatsApp</th>
-                    <th>Aniversário</th>
-                    <th>Canal</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody id="leadsTable"></tbody>
-              </table>
-            </div>
-          </section>
-        </main>
-      </div>
-    </div>
+  if(!firebaseConfig.apiKey || firebaseConfig.apiKey.startsWith('COLE_AQUI')){
+    document.body.innerHTML = '<div style="padding:40px 24px;font-family:sans-serif;color:#eee;background:#111;min-height:100vh;">Configure primeiro o arquivo <code>firebase-config.js</code> com as credenciais do seu projeto Firebase antes de usar o painel.</div>';
+    throw new Error('firebase-config.js não configurado');
+  }
 
-    <script type="module">
-      import { firebaseConfig } from "./firebase-config.js";
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-      import {
-        getAuth,
-        signInWithEmailAndPassword,
-        onAuthStateChanged,
-        signOut,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-      import {
-        getFirestore,
-        doc,
-        getDoc,
-        setDoc,
-        collection,
-        addDoc,
-        updateDoc,
-        deleteDoc,
-        onSnapshot,
-        orderBy,
-        query,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
-      import {
-        getStorage,
-        ref,
-        uploadBytes,
-        getDownloadURL,
-      } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+  const storage = getStorage(app);
 
-      if (
-        !firebaseConfig.apiKey ||
-        firebaseConfig.apiKey.startsWith("COLE_AQUI")
-      ) {
-        document.body.innerHTML =
-          '<div style="padding:40px 24px;font-family:sans-serif;color:#eee;background:#111;min-height:100vh;">Configure primeiro o arquivo <code>firebase-config.js</code> com as credenciais do seu projeto Firebase antes de usar o painel.</div>';
-        throw new Error("firebase-config.js não configurado");
-      }
+  const loginScreen = document.getElementById('loginScreen');
+  const dashboard = document.getElementById('dashboard');
 
-      const app = initializeApp(firebaseConfig);
-      const auth = getAuth(app);
-      const db = getFirestore(app);
-      const storage = getStorage(app);
+  document.getElementById('loginForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    const senha = document.getElementById('senha').value;
+    const errEl = document.getElementById('loginError');
+    errEl.textContent = '';
+    try{ await signInWithEmailAndPassword(auth, email, senha); }
+    catch(err){ errEl.textContent = 'E-mail ou senha incorretos.'; }
+  });
 
-      const loginScreen = document.getElementById("loginScreen");
-      const dashboard = document.getElementById("dashboard");
+  document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
 
-      document
-        .getElementById("loginForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const email = document.getElementById("email").value.trim();
-          const senha = document.getElementById("senha").value;
-          const errEl = document.getElementById("loginError");
-          errEl.textContent = "";
-          try {
-            await signInWithEmailAndPassword(auth, email, senha);
-          } catch (err) {
-            errEl.textContent = "E-mail ou senha incorretos.";
-          }
-        });
+  onAuthStateChanged(auth, (user) => {
+    if(user){
+      loginScreen.style.display = 'none';
+      dashboard.style.display = 'block';
+      document.getElementById('whoEmail').textContent = user.email;
+      startListeners();
+    } else {
+      loginScreen.style.display = 'flex';
+      dashboard.style.display = 'none';
+    }
+  });
 
-      document
-        .getElementById("logoutBtn")
-        .addEventListener("click", () => signOut(auth));
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-' + btn.dataset.tab).classList.add('active');
+    });
+  });
 
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          loginScreen.style.display = "none";
-          dashboard.style.display = "block";
-          document.getElementById("whoEmail").textContent = user.email;
-          startListeners();
-        } else {
-          loginScreen.style.display = "flex";
-          dashboard.style.display = "none";
-        }
-      });
+  let listenersStarted = false;
+  let latestProducts = [];
+  let latestTestimonials = [];
+  let latestLeads = [];
 
-      document.querySelectorAll(".tab-btn").forEach((btn) => {
-        btn.addEventListener("click", () => {
-          document
-            .querySelectorAll(".tab-btn")
-            .forEach((b) => b.classList.remove("active"));
-          document
-            .querySelectorAll(".panel")
-            .forEach((p) => p.classList.remove("active"));
-          btn.classList.add("active");
-          document
-            .getElementById("panel-" + btn.dataset.tab)
-            .classList.add("active");
-        });
-      });
+  function startListeners(){
+    if(listenersStarted) return;
+    listenersStarted = true;
+    listenProdutos();
+    loadConfig();
+    listenTestimonials();
+    listenLeads();
+    loadPromo();
+  }
 
-      let listenersStarted = false;
-      let latestProducts = [];
-      let latestTestimonials = [];
-      let latestLeads = [];
+  function refreshOverview(){
+    document.getElementById('statProdutos').textContent = latestProducts.length;
+    document.getElementById('statDestaques').textContent = latestProducts.filter(p => p.featured).length;
+    document.getElementById('statDepoimentos').textContent = latestTestimonials.length;
+    document.getElementById('statClientes').textContent = latestLeads.length;
+    const mesAtual = new Date().getMonth() + 1;
+    const aniversariantes = latestLeads.filter(l => {
+      const m = (l.birthday || '').split('/')[1];
+      return m && parseInt(m, 10) === mesAtual;
+    });
+    document.getElementById('birthdayHint').textContent = aniversariantes.length
+      ? `${aniversariantes.length} cliente(s) fazem aniversário este mês — confira a aba Clientes.`
+      : 'Nenhum aniversariante registrado para este mês ainda.';
+  }
 
-      function startListeners() {
-        if (listenersStarted) return;
-        listenersStarted = true;
-        listenProdutos();
-        loadConfig();
-        listenTestimonials();
-        listenLeads();
-      }
+  // ---------- PRODUTOS ----------
+  const prodForm = document.getElementById('prodForm');
+  const prodStatus = document.getElementById('prodStatus');
+  const prodFoto = document.getElementById('prodFoto');
+  const prodPreview = document.getElementById('prodPreview');
+  const uploadStatus = document.getElementById('uploadStatus');
 
-      function refreshOverview() {
-        document.getElementById("statProdutos").textContent =
-          latestProducts.length;
-        document.getElementById("statDestaques").textContent =
-          latestProducts.filter((p) => p.featured).length;
-        document.getElementById("statDepoimentos").textContent =
-          latestTestimonials.length;
-        document.getElementById("statClientes").textContent =
-          latestLeads.length;
-        const mesAtual = new Date().getMonth() + 1;
-        const aniversariantes = latestLeads.filter((l) => {
-          const m = (l.birthday || "").split("/")[1];
-          return m && parseInt(m, 10) === mesAtual;
-        });
-        document.getElementById("birthdayHint").textContent =
-          aniversariantes.length
-            ? `${aniversariantes.length} cliente(s) fazem aniversário este mês — confira a aba Clientes.`
-            : "Nenhum aniversariante registrado para este mês ainda.";
-      }
+  function resetProdForm(){
+    prodForm.reset();
+    document.getElementById('prodId').value = '';
+    document.getElementById('prodImagem').value = '';
+    document.getElementById('prodCategoria').value = 'semijoias';
+    document.getElementById('prodCanal').value = 'ambos';
+    document.getElementById('prodDestaque').value = 'false';
+    prodPreview.src = '';
+    uploadStatus.textContent = '';
+  }
 
-      // ---------- PRODUTOS ----------
-      const prodForm = document.getElementById("prodForm");
-      const prodStatus = document.getElementById("prodStatus");
-      const prodFoto = document.getElementById("prodFoto");
-      const prodPreview = document.getElementById("prodPreview");
-      const uploadStatus = document.getElementById("uploadStatus");
+  prodFoto.addEventListener('change', async () => {
+    const file = prodFoto.files[0];
+    if(!file) return;
+    prodPreview.src = URL.createObjectURL(file);
+    uploadStatus.textContent = 'Enviando foto…';
+    try{
+      const path = `products/${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, path);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      document.getElementById('prodImagem').value = url;
+      uploadStatus.textContent = 'Foto enviada.';
+    }catch(err){
+      uploadStatus.textContent = 'Erro ao enviar foto: ' + err.message;
+    }
+  });
 
-      function resetProdForm() {
-        prodForm.reset();
-        document.getElementById("prodId").value = "";
-        document.getElementById("prodImagem").value = "";
-        document.getElementById("prodCategoria").value = "semijoias";
-        document.getElementById("prodCanal").value = "ambos";
-        document.getElementById("prodDestaque").value = "false";
-        prodPreview.src = "";
-        uploadStatus.textContent = "";
-      }
+  prodForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const id = document.getElementById('prodId').value;
+    const data = {
+      name: document.getElementById('prodNome').value.trim(),
+      price: document.getElementById('prodPreco').value.trim(),
+      category: document.getElementById('prodCategoria').value,
+      channel: document.getElementById('prodCanal').value,
+      featured: document.getElementById('prodDestaque').value === 'true',
+      imageUrl: document.getElementById('prodImagem').value.trim()
+    };
+    try{
+      if(id){ await updateDoc(doc(db, 'products', id), data); }
+      else{ await addDoc(collection(db, 'products'), data); }
+      prodStatus.textContent = 'Produto salvo.';
+      prodStatus.className = 'status-msg ok';
+      resetProdForm();
+    }catch(err){
+      prodStatus.textContent = 'Erro ao salvar: ' + err.message;
+      prodStatus.className = 'status-msg err';
+    }
+  });
 
-      prodFoto.addEventListener("change", async () => {
-        const file = prodFoto.files[0];
-        if (!file) return;
-        prodPreview.src = URL.createObjectURL(file);
-        uploadStatus.textContent = "Enviando foto…";
-        try {
-          const path = `products/${Date.now()}-${file.name}`;
-          const storageRef = ref(storage, path);
-          await uploadBytes(storageRef, file);
-          const url = await getDownloadURL(storageRef);
-          document.getElementById("prodImagem").value = url;
-          uploadStatus.textContent = "Foto enviada.";
-        } catch (err) {
-          uploadStatus.textContent = "Erro ao enviar foto: " + err.message;
-        }
-      });
+  document.getElementById('prodCancelar').addEventListener('click', resetProdForm);
 
-      prodForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const id = document.getElementById("prodId").value;
-        const data = {
-          name: document.getElementById("prodNome").value.trim(),
-          price: document.getElementById("prodPreco").value.trim(),
-          category: document.getElementById("prodCategoria").value,
-          channel: document.getElementById("prodCanal").value,
-          featured: document.getElementById("prodDestaque").value === "true",
-          imageUrl: document.getElementById("prodImagem").value.trim(),
-        };
-        try {
-          if (id) {
-            await updateDoc(doc(db, "products", id), data);
-          } else {
-            await addDoc(collection(db, "products"), data);
-          }
-          prodStatus.textContent = "Produto salvo.";
-          prodStatus.className = "status-msg ok";
-          resetProdForm();
-        } catch (err) {
-          prodStatus.textContent = "Erro ao salvar: " + err.message;
-          prodStatus.className = "status-msg err";
-        }
-      });
-
-      document
-        .getElementById("prodCancelar")
-        .addEventListener("click", resetProdForm);
-
-      function listenProdutos() {
-        onSnapshot(collection(db, "products"), (snap) => {
-          latestProducts = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-          refreshOverview();
-          const rows = latestProducts
-            .map(
-              (p) => `<tr>
-          <td>${p.imageUrl ? `<img src="${p.imageUrl}" alt="">` : ""}</td>
+  function listenProdutos(){
+    onSnapshot(collection(db, 'products'), (snap) => {
+      latestProducts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      refreshOverview();
+      const rows = latestProducts.map(p => `<tr>
+          <td>${p.imageUrl ? `<img src="${p.imageUrl}" alt="">` : ''}</td>
           <td>${p.name}</td>
-          <td>${p.price ? "R$ " + p.price : "—"}</td>
+          <td>${p.price ? 'R$ ' + p.price : '—'}</td>
           <td>${p.category}</td>
           <td>${p.channel}</td>
-          <td>${p.featured ? "Sim" : "Não"}</td>
+          <td>${p.featured ? 'Sim' : 'Não'}</td>
           <td>
             <button class="btn btn-ghost" data-edit="${p.id}" style="padding:6px 10px;font-size:0.68rem;">Editar</button>
             <button class="btn btn-danger" data-del="${p.id}">Excluir</button>
           </td>
-        </tr>`,
-            )
-            .join("");
-          document.getElementById("prodTable").innerHTML =
-            rows ||
-            '<tr><td colspan="7">Nenhum produto cadastrado ainda.</td></tr>';
+        </tr>`).join('');
+      document.getElementById('prodTable').innerHTML = rows || '<tr><td colspan="7">Nenhum produto cadastrado ainda.</td></tr>';
 
-          document.querySelectorAll("[data-edit]").forEach((btn) => {
-            btn.addEventListener("click", () => {
-              const p = latestProducts.find((x) => x.id === btn.dataset.edit);
-              document.getElementById("prodId").value = p.id;
-              document.getElementById("prodNome").value = p.name || "";
-              document.getElementById("prodPreco").value = p.price || "";
-              document.getElementById("prodCategoria").value =
-                p.category || "semijoias";
-              document.getElementById("prodCanal").value = p.channel || "ambos";
-              document.getElementById("prodDestaque").value = String(
-                !!p.featured,
-              );
-              document.getElementById("prodImagem").value = p.imageUrl || "";
-              prodPreview.src = p.imageUrl || "";
-              document.querySelector('[data-tab="produtos"]').click();
-              window.scrollTo({ top: 0, behavior: "smooth" });
-            });
-          });
-          document.querySelectorAll("[data-del]").forEach((btn) => {
-            btn.addEventListener("click", async () => {
-              if (confirm("Excluir este produto?"))
-                await deleteDoc(doc(db, "products", btn.dataset.del));
-            });
-          });
+      document.querySelectorAll('[data-edit]').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const p = latestProducts.find(x => x.id === btn.dataset.edit);
+          document.getElementById('prodId').value = p.id;
+          document.getElementById('prodNome').value = p.name || '';
+          document.getElementById('prodPreco').value = p.price || '';
+          document.getElementById('prodCategoria').value = p.category || 'semijoias';
+          document.getElementById('prodCanal').value = p.channel || 'ambos';
+          document.getElementById('prodDestaque').value = String(!!p.featured);
+          document.getElementById('prodImagem').value = p.imageUrl || '';
+          prodPreview.src = p.imageUrl || '';
+          document.querySelector('[data-tab="produtos"]').click();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-      }
-
-      // ---------- CONFIGURAÇÕES ----------
-      async function loadConfig() {
-        const snap = await getDoc(doc(db, "settings", "site"));
-        if (snap.exists()) {
-          const s = snap.data();
-          document.getElementById("cfgAnos").value = s.anos || 36;
-          document.getElementById("cfgWhats").value = s.whatsapp || "";
-          document.getElementById("cfgTagline").value = s.tagline || "";
-          document.getElementById("cfgSub").value = s.sub || "";
-          document.getElementById("cfgInstaAtacado").value =
-            s.instagramAtacado || "";
-          document.getElementById("cfgInstaVarejo").value =
-            s.instagramVarejo || "";
-        }
-      }
-
-      document
-        .getElementById("configForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const statusEl = document.getElementById("cfgStatus");
-          const data = {
-            anos: Number(document.getElementById("cfgAnos").value) || 36,
-            whatsapp: document.getElementById("cfgWhats").value.trim(),
-            tagline: document.getElementById("cfgTagline").value.trim(),
-            sub: document.getElementById("cfgSub").value.trim(),
-            instagramAtacado: document
-              .getElementById("cfgInstaAtacado")
-              .value.trim(),
-            instagramVarejo: document
-              .getElementById("cfgInstaVarejo")
-              .value.trim(),
-          };
-          try {
-            await setDoc(doc(db, "settings", "site"), data, { merge: true });
-            statusEl.textContent = "Configurações atualizadas.";
-            statusEl.className = "status-msg ok";
-          } catch (err) {
-            statusEl.textContent = "Erro ao salvar: " + err.message;
-            statusEl.className = "status-msg err";
-          }
+      });
+      document.querySelectorAll('[data-del]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          if(confirm('Excluir este produto?')) await deleteDoc(doc(db, 'products', btn.dataset.del));
         });
+      });
+    });
+  }
 
-      // ---------- DEPOIMENTOS ----------
-      document
-        .getElementById("testiForm")
-        .addEventListener("submit", async (e) => {
-          e.preventDefault();
-          const statusEl = document.getElementById("testiStatus");
-          try {
-            await addDoc(collection(db, "testimonials"), {
-              quote: document.getElementById("testiQuote").value.trim(),
-              author: document.getElementById("testiAutor").value.trim(),
-              createdAt: Date.now(),
-            });
-            statusEl.textContent = "Depoimento publicado.";
-            statusEl.className = "status-msg ok";
-            e.target.reset();
-          } catch (err) {
-            statusEl.textContent = "Erro ao salvar: " + err.message;
-            statusEl.className = "status-msg err";
-          }
-        });
+  // ---------- PROMO DO DIA ----------
+  const promoForm = document.getElementById('promoForm');
+  const promoFoto = document.getElementById('promoFoto');
+  const promoPreview = document.getElementById('promoPreview');
 
-      function listenTestimonials() {
-        onSnapshot(
-          query(collection(db, "testimonials"), orderBy("createdAt", "desc")),
-          (snap) => {
-            latestTestimonials = snap.docs.map((d) => ({
-              id: d.id,
-              ...d.data(),
-            }));
-            refreshOverview();
-            const rows = latestTestimonials
-              .map(
-                (t) => `<tr>
+  async function loadPromo(){
+    const snap = await getDoc(doc(db, 'promo', 'current'));
+    if(snap.exists()){
+      const p = snap.data();
+      document.getElementById('promoTitulo').value = p.titulo || '';
+      document.getElementById('promoDesconto').value = p.desconto || '';
+      document.getElementById('promoDescricao').value = p.descricao || '';
+      document.getElementById('promoValidade').value = p.validade || '';
+      document.getElementById('promoAtiva').value = String(!!p.ativa);
+      document.getElementById('promoImagem').value = p.imageUrl || '';
+      promoPreview.src = p.imageUrl || '';
+    }
+  }
+
+  promoFoto.addEventListener('change', async () => {
+    const file = promoFoto.files[0];
+    if(!file) return;
+    promoPreview.src = URL.createObjectURL(file);
+    const statusEl = document.getElementById('promoUploadStatus');
+    statusEl.textContent = 'Enviando foto…';
+    try{
+      const path = `promo/${Date.now()}-${file.name}`;
+      const storageRef = ref(storage, path);
+      await uploadBytes(storageRef, file);
+      const url = await getDownloadURL(storageRef);
+      document.getElementById('promoImagem').value = url;
+      statusEl.textContent = 'Foto enviada.';
+    }catch(err){
+      statusEl.textContent = 'Erro ao enviar foto: ' + err.message;
+    }
+  });
+
+  promoForm.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('promoStatus');
+    const data = {
+      titulo: document.getElementById('promoTitulo').value.trim(),
+      desconto: document.getElementById('promoDesconto').value.trim(),
+      descricao: document.getElementById('promoDescricao').value.trim(),
+      validade: document.getElementById('promoValidade').value,
+      ativa: document.getElementById('promoAtiva').value === 'true',
+      imageUrl: document.getElementById('promoImagem').value.trim()
+    };
+    try{
+      await setDoc(doc(db, 'promo', 'current'), data, { merge: true });
+      statusEl.textContent = 'Promo do dia salva.';
+      statusEl.className = 'status-msg ok';
+    }catch(err){
+      statusEl.textContent = 'Erro ao salvar: ' + err.message;
+      statusEl.className = 'status-msg err';
+    }
+  });
+
+  // ---------- CONFIGURAÇÕES ----------
+  async function loadConfig(){
+    const snap = await getDoc(doc(db, 'settings', 'site'));
+    if(snap.exists()){
+      const s = snap.data();
+      document.getElementById('cfgAnos').value = s.anos || 36;
+      document.getElementById('cfgWhats').value = s.whatsapp || '';
+      document.getElementById('cfgTagline').value = s.tagline || '';
+      document.getElementById('cfgSub').value = s.sub || '';
+      document.getElementById('cfgInstaAtacado').value = s.instagramAtacado || '';
+      document.getElementById('cfgInstaVarejo').value = s.instagramVarejo || '';
+    }
+  }
+
+  document.getElementById('configForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('cfgStatus');
+    const data = {
+      anos: Number(document.getElementById('cfgAnos').value) || 36,
+      whatsapp: document.getElementById('cfgWhats').value.trim(),
+      tagline: document.getElementById('cfgTagline').value.trim(),
+      sub: document.getElementById('cfgSub').value.trim(),
+      instagramAtacado: document.getElementById('cfgInstaAtacado').value.trim(),
+      instagramVarejo: document.getElementById('cfgInstaVarejo').value.trim()
+    };
+    try{
+      await setDoc(doc(db, 'settings', 'site'), data, { merge: true });
+      statusEl.textContent = 'Configurações atualizadas.';
+      statusEl.className = 'status-msg ok';
+    }catch(err){
+      statusEl.textContent = 'Erro ao salvar: ' + err.message;
+      statusEl.className = 'status-msg err';
+    }
+  });
+
+  // ---------- DEPOIMENTOS ----------
+  document.getElementById('testiForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const statusEl = document.getElementById('testiStatus');
+    try{
+      await addDoc(collection(db, 'testimonials'), {
+        quote: document.getElementById('testiQuote').value.trim(),
+        author: document.getElementById('testiAutor').value.trim(),
+        createdAt: Date.now()
+      });
+      statusEl.textContent = 'Depoimento publicado.';
+      statusEl.className = 'status-msg ok';
+      e.target.reset();
+    }catch(err){
+      statusEl.textContent = 'Erro ao salvar: ' + err.message;
+      statusEl.className = 'status-msg err';
+    }
+  });
+
+  function listenTestimonials(){
+    onSnapshot(query(collection(db, 'testimonials'), orderBy('createdAt', 'desc')), (snap) => {
+      latestTestimonials = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      refreshOverview();
+      const rows = latestTestimonials.map(t => `<tr>
           <td>${t.quote}</td>
-          <td>${t.author || ""}</td>
+          <td>${t.author || ''}</td>
           <td><button class="btn btn-danger" data-deltesti="${t.id}">Excluir</button></td>
-        </tr>`,
-              )
-              .join("");
-            document.getElementById("testiTable").innerHTML =
-              rows || '<tr><td colspan="3">Nenhum depoimento ainda.</td></tr>';
-            document.querySelectorAll("[data-deltesti]").forEach((btn) => {
-              btn.addEventListener("click", async () => {
-                if (confirm("Excluir este depoimento?"))
-                  await deleteDoc(
-                    doc(db, "testimonials", btn.dataset.deltesti),
-                  );
-              });
-            });
-          },
-        );
-      }
+        </tr>`).join('');
+      document.getElementById('testiTable').innerHTML = rows || '<tr><td colspan="3">Nenhum depoimento ainda.</td></tr>';
+      document.querySelectorAll('[data-deltesti]').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          if(confirm('Excluir este depoimento?')) await deleteDoc(doc(db, 'testimonials', btn.dataset.deltesti));
+        });
+      });
+    });
+  }
 
-      // ---------- CLIENTES / LEADS ----------
-      function renderLeads(list) {
-        const rows = list
-          .map(
-            (l) => `<tr>
-        <td>${l.name || ""}</td>
-        <td>${l.contact || ""}</td>
-        <td>${l.birthday ? `<span class="birthday-tag">${l.birthday}</span>` : "—"}</td>
-        <td>${l.channel || ""}</td>
+  // ---------- CLIENTES / LEADS ----------
+  function renderLeads(list){
+    const rows = list.map(l => `<tr>
+        <td>${l.name || ''}</td>
+        <td>${l.contact || ''}</td>
+        <td>${l.birthday ? `<span class="birthday-tag">${l.birthday}</span>` : '—'}</td>
+        <td>${l.channel || ''}</td>
         <td><button class="btn btn-danger" data-dellead="${l.id}">Excluir</button></td>
-      </tr>`,
-          )
-          .join("");
-        document.getElementById("leadsTable").innerHTML =
-          rows ||
-          '<tr><td colspan="5">Nenhum cliente cadastrado ainda.</td></tr>';
-        document.querySelectorAll("[data-dellead]").forEach((btn) => {
-          btn.addEventListener("click", async () => {
-            if (confirm("Excluir este contato?"))
-              await deleteDoc(doc(db, "leads", btn.dataset.dellead));
-          });
-        });
-      }
-
-      function listenLeads() {
-        onSnapshot(
-          query(collection(db, "leads"), orderBy("createdAt", "desc")),
-          (snap) => {
-            latestLeads = snap.docs.map((d) => ({ id: d.id, ...d.data() }));
-            refreshOverview();
-            renderLeads(latestLeads);
-          },
-        );
-      }
-
-      document.getElementById("leadSearch").addEventListener("input", (e) => {
-        const term = e.target.value.trim().toLowerCase();
-        renderLeads(
-          latestLeads.filter((l) =>
-            (l.name || "").toLowerCase().includes(term),
-          ),
-        );
+      </tr>`).join('');
+    document.getElementById('leadsTable').innerHTML = rows || '<tr><td colspan="5">Nenhum cliente cadastrado ainda.</td></tr>';
+    document.querySelectorAll('[data-dellead]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if(confirm('Excluir este contato?')) await deleteDoc(doc(db, 'leads', btn.dataset.dellead));
       });
+    });
+  }
 
-      let birthdayFilterOn = false;
-      document
-        .getElementById("filterBirthdayMonth")
-        .addEventListener("click", (e) => {
-          birthdayFilterOn = !birthdayFilterOn;
-          e.target.textContent = birthdayFilterOn
-            ? "Ver todos"
-            : "Aniversariantes do mês";
-          if (birthdayFilterOn) {
-            const mesAtual = new Date().getMonth() + 1;
-            renderLeads(
-              latestLeads.filter((l) => {
-                const m = (l.birthday || "").split("/")[1];
-                return m && parseInt(m, 10) === mesAtual;
-              }),
-            );
-          } else {
-            renderLeads(latestLeads);
-          }
-        });
+  function listenLeads(){
+    onSnapshot(query(collection(db, 'leads'), orderBy('createdAt', 'desc')), (snap) => {
+      latestLeads = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      refreshOverview();
+      renderLeads(latestLeads);
+    });
+  }
 
-      document.getElementById("exportCsv").addEventListener("click", () => {
-        const header = "Nome,WhatsApp,Aniversario,Canal\n";
-        const rows = latestLeads
-          .map(
-            (l) =>
-              `"${l.name || ""}","${l.contact || ""}","${l.birthday || ""}","${l.channel || ""}"`,
-          )
-          .join("\n");
-        const blob = new Blob([header + rows], {
-          type: "text/csv;charset=utf-8;",
-        });
-        const url = URL.createObjectURL(blob);
-        const a = document.createElement("a");
-        a.href = url;
-        a.download = `narcle-clientes-${new Date().toISOString().slice(0, 10)}.csv`;
-        a.click();
-        URL.revokeObjectURL(url);
-      });
-    </script>
-  </body>
+  document.getElementById('leadSearch').addEventListener('input', (e) => {
+    const term = e.target.value.trim().toLowerCase();
+    renderLeads(latestLeads.filter(l => (l.name || '').toLowerCase().includes(term)));
+  });
+
+  let birthdayFilterOn = false;
+  document.getElementById('filterBirthdayMonth').addEventListener('click', (e) => {
+    birthdayFilterOn = !birthdayFilterOn;
+    e.target.textContent = birthdayFilterOn ? 'Ver todos' : 'Aniversariantes do mês';
+    if(birthdayFilterOn){
+      const mesAtual = new Date().getMonth() + 1;
+      renderLeads(latestLeads.filter(l => {
+        const m = (l.birthday || '').split('/')[1];
+        return m && parseInt(m, 10) === mesAtual;
+      }));
+    } else {
+      renderLeads(latestLeads);
+    }
+  });
+
+  document.getElementById('exportCsv').addEventListener('click', () => {
+    const header = 'Nome,WhatsApp,Aniversario,Canal\n';
+    const rows = latestLeads.map(l => `"${l.name || ''}","${l.contact || ''}","${l.birthday || ''}","${l.channel || ''}"`).join('\n');
+    const blob = new Blob([header + rows], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `narcle-clientes-${new Date().toISOString().slice(0,10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+</script>
+</body>
 </html>
