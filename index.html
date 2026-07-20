@@ -1,0 +1,1481 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NarCle Joias — Brilho tem marca | Caxias-MA</title>
+    <meta
+      name="description"
+      content="Joias, semijoias e relógios há 36 anos em Caxias-MA. Atacado e varejo."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --black: #0b0b0c;
+        --charcoal: #17161a;
+        --charcoal-2: #1f1d22;
+        --gold: #cba135;
+        --gold-light: #e8cd82;
+        --ivory: #f7f3ea;
+        --ink-dim: rgba(247, 243, 234, 0.62);
+        --line: rgba(247, 243, 234, 0.13);
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--black);
+        color: var(--ivory);
+        font-family: "Inter", sans-serif;
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1,
+      h2,
+      h3,
+      .display {
+        font-family: "Playfair Display", serif;
+        font-weight: 600;
+        line-height: 1.08;
+        letter-spacing: -0.005em;
+      }
+      em {
+        font-style: italic;
+        font-weight: 500;
+        color: var(--gold-light);
+      }
+      .mono {
+        font-family: "Space Mono", monospace;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .wrap {
+        max-width: 1160px;
+        margin: 0 auto;
+        padding: 0 28px;
+      }
+      ::selection {
+        background: var(--gold);
+        color: var(--black);
+      }
+      button {
+        font: inherit;
+        cursor: pointer;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation-duration: 0.001ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.001ms !important;
+          scroll-behavior: auto !important;
+        }
+      }
+
+      .progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), var(--gold-light));
+        z-index: 100;
+        width: 0%;
+        transition: width 0.1s linear;
+      }
+      .grain {
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        z-index: 1;
+        opacity: 0.04;
+        mix-blend-mode: overlay;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      }
+
+      .marquee {
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        overflow: hidden;
+        background: var(--charcoal);
+        position: relative;
+        z-index: 3;
+      }
+      .marquee-track {
+        display: inline-flex;
+        gap: 3.2rem;
+        padding: 0.85rem 0;
+        white-space: nowrap;
+        animation: marquee 30s linear infinite;
+      }
+      .marquee-track span {
+        font-family: "Space Mono";
+        font-size: 0.68rem;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .marquee-track span::before {
+        content: "◆";
+        font-size: 0.55rem;
+        color: var(--ink-dim);
+      }
+      @keyframes marquee {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 80;
+        background: rgba(11, 11, 12, 0.78);
+        backdrop-filter: blur(14px) saturate(140%);
+        border-bottom: 1px solid var(--line);
+      }
+      nav.wrap {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 28px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.7rem;
+      }
+      .brand-mark {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        background: conic-gradient(
+          from 200deg,
+          var(--gold),
+          var(--gold-light),
+          var(--gold)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2px;
+      }
+      .brand-mark span {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        background: var(--black);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display";
+        font-weight: 700;
+        color: var(--gold-light);
+        font-size: 1.05rem;
+        font-style: italic;
+      }
+      .brand-name {
+        font-family: "Playfair Display";
+        font-weight: 600;
+        font-size: 1.15rem;
+        letter-spacing: 0.01em;
+      }
+      .brand-name small {
+        display: block;
+        font-family: "Space Mono";
+        font-weight: 400;
+        font-size: 0.56rem;
+        color: var(--gold-light);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-top: 0.1rem;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.1rem;
+        font-size: 0.86rem;
+        font-weight: 500;
+      }
+      .nav-links a {
+        position: relative;
+        opacity: 0.82;
+        transition: opacity 0.25s;
+        padding: 0.3rem 0;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 1px;
+        background: var(--gold);
+        transition: width 0.3s var(--ease);
+      }
+      .nav-links a:hover {
+        opacity: 1;
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .cta-btn {
+        background: transparent;
+        color: var(--ivory);
+        font-weight: 600;
+        font-family: "Inter";
+        padding: 0.7rem 1.45rem;
+        border-radius: 999px;
+        font-size: 0.84rem;
+        border: 1px solid var(--gold);
+        transition:
+          background 0.3s var(--ease),
+          color 0.3s var(--ease),
+          transform 0.25s var(--ease),
+          box-shadow 0.3s var(--ease);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        white-space: nowrap;
+      }
+      .cta-btn:hover {
+        background: var(--gold);
+        color: var(--black);
+        box-shadow: 0 8px 24px rgba(203, 161, 53, 0.28);
+      }
+      .cta-btn.solid {
+        background: var(--gold);
+        color: var(--black);
+      }
+      .cta-btn.solid:hover {
+        background: var(--gold-light);
+      }
+      .desktop-only {
+        display: flex;
+      }
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: transparent;
+        flex-shrink: 0;
+      }
+      .hamburger span {
+        width: 18px;
+        height: 1.5px;
+        background: var(--ivory);
+        transition:
+          transform 0.3s var(--ease),
+          opacity 0.3s var(--ease);
+      }
+      .hamburger.open span:nth-child(1) {
+        transform: translateY(6.5px) rotate(45deg);
+      }
+      .hamburger.open span:nth-child(2) {
+        opacity: 0;
+      }
+      .hamburger.open span:nth-child(3) {
+        transform: translateY(-6.5px) rotate(-45deg);
+      }
+      @media (max-width: 900px) {
+        .nav-links {
+          display: none;
+        }
+        .desktop-only {
+          display: none;
+        }
+        .hamburger {
+          display: flex;
+        }
+      }
+
+      .drawer-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(2px);
+        z-index: 90;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.35s var(--ease);
+      }
+      .drawer-overlay.open {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .drawer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: min(78vw, 340px);
+        z-index: 95;
+        background: var(--charcoal);
+        border-left: 1px solid var(--line);
+        transform: translateX(100%);
+        transition: transform 0.45s var(--ease);
+        display: flex;
+        flex-direction: column;
+        padding: 28px 30px;
+      }
+      .drawer.open {
+        transform: translateX(0);
+      }
+      .drawer-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 3rem;
+      }
+      .drawer-close {
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        background: transparent;
+        color: var(--ivory);
+        font-size: 1.1rem;
+      }
+      .drawer-links {
+        display: flex;
+        flex-direction: column;
+        gap: 1.6rem;
+      }
+      .drawer-links a {
+        font-family: "Playfair Display";
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: var(--ivory);
+        opacity: 0;
+        transform: translateX(16px);
+        transition:
+          opacity 0.4s var(--ease),
+          transform 0.4s var(--ease);
+      }
+      .drawer.open .drawer-links a {
+        opacity: 1;
+        transform: none;
+      }
+      .drawer.open .drawer-links a:nth-child(1) {
+        transition-delay: 0.08s;
+      }
+      .drawer.open .drawer-links a:nth-child(2) {
+        transition-delay: 0.14s;
+      }
+      .drawer.open .drawer-links a:nth-child(3) {
+        transition-delay: 0.2s;
+      }
+      .drawer.open .drawer-links a:nth-child(4) {
+        transition-delay: 0.26s;
+      }
+      .drawer-foot {
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 0.9rem;
+      }
+      .drawer-foot .cta-btn {
+        justify-content: center;
+        width: 100%;
+        padding: 1rem;
+      }
+      .drawer-foot small {
+        font-family: "Space Mono";
+        font-size: 0.62rem;
+        letter-spacing: 0.1em;
+        color: var(--ink-dim);
+        text-transform: uppercase;
+        text-align: center;
+      }
+
+      .hero {
+        position: relative;
+        padding: 108px 28px 70px;
+        text-align: center;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            70% 55% at 50% 0%,
+            rgba(203, 161, 53, 0.14),
+            transparent 72%
+          ),
+          var(--black);
+      }
+      .sparkle {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--gold-light);
+        opacity: 0;
+        animation: twinkle 3.4s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0;
+          transform: scale(0.4);
+        }
+        50% {
+          opacity: 0.9;
+          transform: scale(1);
+        }
+      }
+      .hero-inner {
+        position: relative;
+        z-index: 2;
+        opacity: 0;
+        transform: translateY(18px);
+        animation: hero-in 1s var(--ease) 0.15s forwards;
+      }
+      @keyframes hero-in {
+        to {
+          opacity: 1;
+          transform: none;
+        }
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: "Space Mono";
+        font-size: 0.68rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold-light);
+      }
+      .eyebrow::before {
+        content: "";
+        width: 22px;
+        height: 1px;
+        background: var(--gold-light);
+      }
+      .hero h1 {
+        font-size: clamp(2.5rem, 6.6vw, 4.6rem);
+        color: var(--ivory);
+        margin: 1.6rem 0 1.3rem;
+      }
+      .hero p.lede {
+        max-width: 520px;
+        margin: 0 auto 2.2rem;
+        font-size: 1.06rem;
+        color: var(--ink-dim);
+        line-height: 1.65;
+      }
+
+      /* atacado / varejo toggle */
+      .mode-toggle {
+        display: inline-flex;
+        background: rgba(247, 243, 234, 0.06);
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        padding: 0.3rem;
+        margin-bottom: 2.4rem;
+      }
+      .mode-btn {
+        padding: 0.6rem 1.5rem;
+        border-radius: 999px;
+        font-family: "Inter";
+        font-weight: 700;
+        font-size: 0.85rem;
+        color: var(--ink-dim);
+        background: transparent;
+        transition: all 0.3s var(--ease);
+      }
+      .mode-btn.active {
+        background: var(--gold);
+        color: var(--black);
+      }
+      .mode-panel {
+        max-width: 480px;
+        margin: 0 auto 2.6rem;
+        padding: 1.4rem 1.6rem;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: rgba(247, 243, 234, 0.03);
+      }
+      .mode-panel p {
+        font-size: 0.9rem;
+        color: var(--ink-dim);
+        line-height: 1.55;
+      }
+      .mode-panel strong {
+        color: var(--gold-light);
+      }
+      .hero-ctas {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .hero-ctas .cta-btn {
+        padding: 0.95rem 1.9rem;
+        font-size: 0.9rem;
+      }
+      .hero-stats {
+        display: flex;
+        gap: 0;
+        justify-content: center;
+        flex-wrap: wrap;
+        border-top: 1px solid var(--line);
+        padding-top: 2rem;
+        max-width: 560px;
+        margin: 0 auto;
+      }
+      .hero-stats div {
+        text-align: center;
+        flex: 1;
+        min-width: 130px;
+        padding: 0 1rem;
+        border-left: 1px solid var(--line);
+      }
+      .hero-stats div:first-child {
+        border-left: none;
+      }
+      .hero-stats strong {
+        display: block;
+        font-family: "Playfair Display";
+        font-size: 1.9rem;
+        color: var(--gold-light);
+        font-weight: 600;
+      }
+      .hero-stats span {
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--ink-dim);
+      }
+      .wave {
+        position: relative;
+        z-index: 2;
+        margin-top: 40px;
+        line-height: 0;
+      }
+      .wave svg {
+        width: 100%;
+        height: 64px;
+        display: block;
+      }
+
+      section {
+        position: relative;
+        z-index: 2;
+        padding: 96px 0;
+      }
+      .section-head {
+        max-width: 600px;
+        margin-bottom: 3.2rem;
+      }
+      .section-head .eyebrow {
+        margin-bottom: 1rem;
+        display: inline-flex;
+      }
+      .section-head h2 {
+        font-size: clamp(1.9rem, 4vw, 2.7rem);
+        color: var(--ivory);
+      }
+      .section-head p {
+        color: var(--ink-dim);
+        margin-top: 1.1rem;
+        line-height: 1.65;
+        font-size: 1rem;
+      }
+
+      .about {
+        background: var(--charcoal);
+      }
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+        align-items: center;
+      }
+      @media (max-width: 860px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+          gap: 2.6rem;
+        }
+      }
+      .about-card {
+        background: linear-gradient(165deg, #26221a, var(--black));
+        border-radius: 4px;
+        padding: 2.6rem;
+        border: 1px solid var(--line);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--gold), transparent);
+      }
+      .about-card h3 {
+        color: var(--gold-light);
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+        font-weight: 500;
+        font-style: italic;
+      }
+      .about-card p {
+        color: var(--ink-dim);
+        line-height: 1.75;
+        font-size: 0.95rem;
+      }
+      .badge-row {
+        display: flex;
+        gap: 0.7rem;
+        margin-top: 1.8rem;
+        flex-wrap: wrap;
+      }
+      .badge {
+        font-family: "Space Mono";
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        border: 1px solid var(--line);
+        padding: 0.42rem 0.8rem;
+        border-radius: 2px;
+        color: var(--ink-dim);
+      }
+      .about-text p {
+        color: var(--ink-dim);
+        line-height: 1.8;
+        margin-bottom: 1.3rem;
+        font-size: 1.02rem;
+      }
+      .about-text strong {
+        color: var(--ivory);
+        font-weight: 600;
+      }
+
+      .categories {
+        background: var(--black);
+      }
+      .cat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.3rem;
+      }
+      @media (max-width: 900px) {
+        .cat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+      @media (max-width: 520px) {
+        .cat-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .cat-card {
+        background: rgba(247, 243, 234, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 2.2rem 1.6rem;
+        text-align: center;
+        transition:
+          transform 0.4s var(--ease),
+          border-color 0.3s,
+          background 0.3s;
+        will-change: transform;
+      }
+      .cat-card:hover {
+        border-color: var(--gold);
+        background: rgba(203, 161, 53, 0.05);
+      }
+      .cat-icon {
+        width: 48px;
+        height: 48px;
+        margin: 0 auto 1.2rem;
+        border-radius: 50%;
+        border: 1px solid var(--gold-light);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: "Playfair Display";
+        font-style: italic;
+        color: var(--gold-light);
+        font-size: 1.3rem;
+      }
+      .cat-card h3 {
+        font-size: 1.15rem;
+        color: var(--ivory);
+        font-weight: 500;
+      }
+
+      .channels {
+        background: var(--charcoal);
+      }
+      .ch-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.6rem;
+      }
+      @media (max-width: 760px) {
+        .ch-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .ch-card {
+        background: rgba(247, 243, 234, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 2.6rem;
+        position: relative;
+        overflow: hidden;
+        transition: border-color 0.3s;
+      }
+      .ch-card:hover {
+        border-color: var(--gold);
+      }
+      .ch-card.atacado::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gold);
+      }
+      .ch-card.varejo::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--gold-light);
+      }
+      .ch-tag {
+        font-family: "Space Mono";
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--gold-light);
+        border: 1px solid var(--gold-light);
+        display: inline-block;
+        padding: 0.32rem 0.75rem;
+        border-radius: 999px;
+        margin-bottom: 1.2rem;
+      }
+      .ch-card h3 {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+      }
+      .ch-card p {
+        color: var(--ink-dim);
+        font-size: 0.92rem;
+        line-height: 1.65;
+        margin-bottom: 1.6rem;
+      }
+      .ch-card ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin-bottom: 1.8rem;
+      }
+      .ch-card li {
+        font-size: 0.86rem;
+        color: var(--ink-dim);
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .ch-card li::before {
+        content: "✦";
+        color: var(--gold);
+        font-size: 0.7rem;
+      }
+
+      .location {
+        background: var(--black);
+      }
+      .loc-single {
+        max-width: 640px;
+        background: rgba(247, 243, 234, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 2.4rem;
+      }
+      .loc-tag {
+        font-family: "Space Mono";
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--gold-light);
+        border: 1px solid var(--gold-light);
+        display: inline-block;
+        padding: 0.32rem 0.75rem;
+        border-radius: 999px;
+        margin-bottom: 1.2rem;
+      }
+      .loc-single h3 {
+        font-size: 1.4rem;
+        color: var(--ivory);
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+      }
+      .loc-single .addr {
+        color: var(--ink-dim);
+        font-size: 0.92rem;
+        margin-bottom: 1.4rem;
+        line-height: 1.5;
+      }
+      .loc-single .wa {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-family: "Space Mono";
+        font-weight: 700;
+        color: var(--gold-light);
+        font-size: 0.95rem;
+        border-top: 1px solid var(--line);
+        padding-top: 1.2rem;
+        width: 100%;
+      }
+
+      .social {
+        background: var(--charcoal);
+        text-align: center;
+      }
+      .ig-card {
+        max-width: 460px;
+        margin: 0 auto;
+        background: rgba(247, 243, 234, 0.03);
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        padding: 2.8rem;
+      }
+      .ig-stats {
+        display: flex;
+        justify-content: center;
+        gap: 0;
+        margin: 1.6rem 0 2rem;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        padding: 1.6rem 0;
+      }
+      .ig-stats div {
+        flex: 1;
+        border-left: 1px solid var(--line);
+      }
+      .ig-stats div:first-child {
+        border-left: none;
+      }
+      .ig-stats div strong {
+        display: block;
+        font-family: "Playfair Display";
+        font-size: 1.6rem;
+        color: var(--gold-light);
+        font-weight: 600;
+      }
+      .ig-stats div span {
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-dim);
+      }
+      .ig-links {
+        display: flex;
+        gap: 0.8rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      footer {
+        background: var(--black);
+        padding: 3.2rem 0 2rem;
+        border-top: 1px solid var(--line);
+      }
+      .foot-grid {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 2.4rem;
+        margin-bottom: 2.4rem;
+      }
+      .foot-links {
+        display: flex;
+        gap: 3rem;
+        flex-wrap: wrap;
+      }
+      .foot-links div h5 {
+        font-family: "Space Mono";
+        font-size: 0.64rem;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--gold-light);
+        margin-bottom: 0.9rem;
+      }
+      .foot-links div a {
+        display: block;
+        color: var(--ink-dim);
+        font-size: 0.86rem;
+        margin-bottom: 0.55rem;
+        transition: color 0.25s;
+      }
+      .foot-links div a:hover {
+        color: var(--ivory);
+      }
+      .foot-bottom {
+        text-align: center;
+        color: var(--ink-dim);
+        font-size: 0.74rem;
+        padding-top: 1.8rem;
+        border-top: 1px solid var(--line);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(26px);
+        transition:
+          opacity 0.8s var(--ease),
+          transform 0.8s var(--ease);
+      }
+      .reveal.in {
+        opacity: 1;
+        transform: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress" id="progress"></div>
+    <div class="grain"></div>
+
+    <div class="marquee">
+      <div class="marquee-track" id="marqueeTrack"></div>
+    </div>
+
+    <header>
+      <nav class="wrap">
+        <div class="brand">
+          <div class="brand-mark"><span>N</span></div>
+          <div class="brand-name">NarCle<small>Brilho tem marca</small></div>
+        </div>
+        <div class="nav-links">
+          <a href="#sobre">Sobre</a>
+          <a href="#categorias">Categorias</a>
+          <a href="#canais">Atacado &amp; Varejo</a>
+          <a href="#local">Loja</a>
+        </div>
+        <a class="cta-btn solid desktop-only" href="#canais">Fazer contato</a>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </header>
+
+    <div class="drawer-overlay" id="drawerOverlay"></div>
+    <div class="drawer" id="drawer">
+      <div class="drawer-top">
+        <div class="brand">
+          <div class="brand-mark"><span>N</span></div>
+        </div>
+        <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">
+          ✕
+        </button>
+      </div>
+      <div class="drawer-links">
+        <a href="#sobre" class="drawer-link">Sobre</a>
+        <a href="#categorias" class="drawer-link">Categorias</a>
+        <a href="#canais" class="drawer-link">Atacado &amp; Varejo</a>
+        <a href="#local" class="drawer-link">Loja</a>
+      </div>
+      <div class="drawer-foot">
+        <a class="cta-btn solid" href="#canais">Fazer contato</a>
+        <small>Av. Central, 1933 · Centro · Caxias-MA</small>
+      </div>
+    </div>
+
+    <section class="hero" id="heroSection">
+      <div class="wrap hero-inner">
+        <span class="eyebrow">Caxias · Maranhão · desde 1990</span>
+        <h1>Brilho <em>tem marca</em></h1>
+        <p class="lede">
+          36 anos entregando joias, semijoias e relógios com a confiança de quem
+          construiu uma marca de verdade — no atacado e no varejo.
+        </p>
+
+        <div class="mode-toggle" id="modeToggle">
+          <button class="mode-btn active" data-mode="varejo">
+            Sou cliente
+          </button>
+          <button class="mode-btn" data-mode="atacado">Sou lojista</button>
+        </div>
+        <div class="mode-panel" id="modePanel"></div>
+
+        <div class="hero-ctas">
+          <a
+            class="cta-btn solid"
+            id="modeCta"
+            href="https://instagram.com/narclejoiasvarejo"
+            target="_blank"
+            rel="noopener"
+            >Comprar no varejo</a
+          >
+          <a class="cta-btn" href="#categorias">Ver categorias</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <strong class="count" data-target="36">0</strong
+            ><span>Anos de história</span>
+          </div>
+          <div><strong>2</strong><span>Canais: atacado e varejo</span></div>
+          <div>
+            <strong class="count" data-target="9987" data-suffix="+">0</strong
+            ><span>Seguidores</span>
+          </div>
+        </div>
+      </div>
+      <div class="wave">
+        <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
+          <path
+            d="M0,36 C300,80 900,0 1200,36 L1200,64 L0,64 Z"
+            fill="#17161A"
+          ></path>
+        </svg>
+      </div>
+    </section>
+
+    <section class="about" id="sobre">
+      <div class="wrap about-grid">
+        <div class="reveal about-text">
+          <span class="eyebrow" style="display: block; margin-bottom: 1rem"
+            >Nossa história</span
+          >
+          <h2
+            style="
+              font-size: clamp(1.8rem, 3.6vw, 2.4rem);
+              color: var(--ivory);
+              margin-bottom: 1.3rem;
+            "
+          >
+            36 anos de parceria e confiança
+          </h2>
+          <p>
+            A <strong>NarCle Joias</strong> nasceu em Caxias-MA e construiu, ao
+            longo de 36 anos, uma marca reconhecida em joias, semijoias e
+            relógios — com loja própria na Av. Central, no Centro da cidade.
+          </p>
+          <p>
+            Hoje a NarCle atende dois públicos: quem compra pra usar, e quem
+            revende. Nossa filosofia de trabalho é pautada no
+            <strong>respeito e na confiança</strong>, em cada relação — seja com
+            o cliente final, seja com o lojista parceiro.
+          </p>
+          <div class="badge-row">
+            <span class="badge">36 anos de mercado</span>
+            <span class="badge">Loja física no Centro</span>
+            <span class="badge">Atacado e varejo</span>
+            <span class="badge">Programa de revendedores</span>
+          </div>
+        </div>
+        <div class="reveal about-card">
+          <h3>
+            "Nossa filosofia de trabalho é pautada no respeito e na confiança."
+          </h3>
+          <p>
+            É essa relação de proximidade — com quem compra e com quem revende —
+            que sustenta a marca há mais de três décadas em Caxias.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories" id="categorias">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Categorias</span>
+          <h2>O que você encontra na NarCle</h2>
+          <p>
+            Linha completa pensada tanto pra quem compra pra usar quanto pra
+            quem revende.
+          </p>
+        </div>
+        <div class="cat-grid" id="catGrid">
+          <div class="cat-card">
+            <div class="cat-icon">✦</div>
+            <h3>Semijoias</h3>
+          </div>
+          <div class="cat-card">
+            <div class="cat-icon">◐</div>
+            <h3>Prata</h3>
+          </div>
+          <div class="cat-card">
+            <div class="cat-icon">◈</div>
+            <h3>Relógios</h3>
+          </div>
+          <div class="cat-card">
+            <div class="cat-icon">✧</div>
+            <h3>Eventos</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="channels" id="canais">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Dois canais, uma marca</span>
+          <h2>Atacado &amp; Varejo</h2>
+          <p>
+            Cada perfil tem seu próprio canal de atendimento — fale direto com
+            quem cuida do seu tipo de compra.
+          </p>
+        </div>
+        <div class="ch-grid">
+          <div class="ch-card atacado reveal">
+            <span class="ch-tag">Atacado</span>
+            <h3>Pra quem revende</h3>
+            <p>
+              Condições especiais pra lojistas, com o suporte de quem entende do
+              programa de revendedores NarCle.
+            </p>
+            <ul>
+              <li>Preços diferenciados por volume</li>
+              <li>Suporte dedicado a revendedores</li>
+              <li>Novidades em primeira mão</li>
+            </ul>
+            <a
+              class="cta-btn solid"
+              href="https://instagram.com/narclejoiasatacado"
+              target="_blank"
+              rel="noopener"
+              >Falar com o Atacado</a
+            >
+          </div>
+          <div class="ch-card varejo reveal">
+            <span class="ch-tag">Varejo</span>
+            <h3>Pra quem compra pra usar</h3>
+            <p>
+              Peças escolhidas com cuidado, direto da loja física ou pelo canal
+              digital de varejo.
+            </p>
+            <ul>
+              <li>Compra unitária, sem mínimo</li>
+              <li>Atendimento pessoal</li>
+              <li>Retirada na loja física</li>
+            </ul>
+            <a
+              class="cta-btn"
+              href="https://instagram.com/narclejoiasvarejo"
+              target="_blank"
+              rel="noopener"
+              >Falar com o Varejo</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="location" id="local">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Nossa loja</span>
+          <h2>Av. Central, Centro — Caxias-MA</h2>
+        </div>
+        <div class="loc-single reveal">
+          <span class="loc-tag">Loja física</span>
+          <h3>NarCle Joias</h3>
+          <p class="addr">
+            Av. Central, 1933 — Centro, Caxias, MA · CEP 65600-160
+          </p>
+          <a class="wa" href="tel:+559935215262">(99) 3521-5262</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="social">
+      <div class="wrap">
+        <div class="ig-card reveal">
+          <span class="eyebrow">@narclejoias</span>
+          <h2
+            style="font-size: 1.6rem; color: var(--ivory); margin-top: 0.9rem"
+          >
+            Segue a gente no Instagram
+          </h2>
+          <div class="ig-stats">
+            <div>
+              <strong class="count" data-target="2894">0</strong
+              ><span>Posts</span>
+            </div>
+            <div>
+              <strong class="count" data-target="9987" data-suffix="+">0</strong
+              ><span>Seguidores</span>
+            </div>
+            <div><strong>36</strong><span>Anos de marca</span></div>
+          </div>
+          <div class="ig-links">
+            <a
+              class="cta-btn"
+              href="https://instagram.com/narclejoiasatacado"
+              target="_blank"
+              rel="noopener"
+              >Atacado</a
+            >
+            <a
+              class="cta-btn"
+              href="https://instagram.com/narclejoiasvarejo"
+              target="_blank"
+              rel="noopener"
+              >Varejo</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="wrap">
+        <div class="foot-grid">
+          <div class="brand">
+            <div class="brand-mark"><span>N</span></div>
+            <div class="brand-name">NarCle<small>Brilho tem marca</small></div>
+          </div>
+          <div class="foot-links">
+            <div>
+              <h5>Site</h5>
+              <a href="#sobre">Sobre</a><a href="#categorias">Categorias</a
+              ><a href="#canais">Atacado &amp; Varejo</a
+              ><a href="#local">Loja</a>
+            </div>
+            <div>
+              <h5>Fale com a gente</h5>
+              <a
+                href="https://instagram.com/narclejoiasatacado"
+                target="_blank"
+                rel="noopener"
+                >Instagram Atacado</a
+              ><a
+                href="https://instagram.com/narclejoiasvarejo"
+                target="_blank"
+                rel="noopener"
+                >Instagram Varejo</a
+              ><a href="tel:+559935215262">(99) 3521-5262</a>
+            </div>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          NarCle Joias — Av. Central, 1933, Centro, Caxias/MA. 36 anos de
+          história.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      var progress = document.getElementById("progress");
+      window.addEventListener(
+        "scroll",
+        function () {
+          var h = document.documentElement;
+          progress.style.width =
+            (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
+        },
+        { passive: true },
+      );
+
+      var marqueeItems = [
+        "36 anos de história",
+        "Semijoias",
+        "Prata",
+        "Relógios",
+        "Atacado e Varejo",
+        "Av. Central, Centro",
+      ];
+      var mHTML = "";
+      marqueeItems.concat(marqueeItems).forEach(function (t) {
+        mHTML += "<span>" + t + "</span>";
+      });
+      document.getElementById("marqueeTrack").innerHTML = mHTML;
+
+      var hamburger = document.getElementById("hamburger");
+      var drawer = document.getElementById("drawer");
+      var drawerOverlay = document.getElementById("drawerOverlay");
+      var drawerClose = document.getElementById("drawerClose");
+      function openDrawer() {
+        drawer.classList.add("open");
+        drawerOverlay.classList.add("open");
+        hamburger.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function closeDrawer() {
+        drawer.classList.remove("open");
+        drawerOverlay.classList.remove("open");
+        hamburger.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      hamburger.addEventListener("click", function () {
+        drawer.classList.contains("open") ? closeDrawer() : openDrawer();
+      });
+      drawerClose.addEventListener("click", closeDrawer);
+      drawerOverlay.addEventListener("click", closeDrawer);
+      document.querySelectorAll(".drawer-link").forEach(function (a) {
+        a.addEventListener("click", closeDrawer);
+      });
+
+      var io = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              e.target.classList.add("in");
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.15 },
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        io.observe(el);
+      });
+
+      var catCards = document.querySelectorAll("#catGrid .cat-card");
+      catCards.forEach(function (card, i) {
+        card.classList.add("reveal");
+        card.style.transitionDelay = i * 90 + "ms";
+        io.observe(card);
+      });
+
+      function animateCount(el) {
+        var target = parseInt(el.dataset.target, 10);
+        var suffix = el.dataset.suffix || "";
+        var dur = 1500,
+          start = performance.now();
+        function tick(now) {
+          var p = Math.min((now - start) / dur, 1);
+          var eased = 1 - Math.pow(1 - p, 3);
+          var val = Math.floor(eased * target);
+          el.textContent =
+            (target >= 1000
+              ? (val / 1000).toFixed(1).replace(".0", "") + " mil"
+              : val) + (p >= 1 ? suffix : "");
+          if (p < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+      }
+      var countIo = new IntersectionObserver(
+        function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) {
+              animateCount(e.target);
+              countIo.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.6 },
+      );
+      document.querySelectorAll(".count").forEach(function (el) {
+        countIo.observe(el);
+      });
+
+      /* sparkle particles in hero */
+      var heroSection = document.getElementById("heroSection");
+      for (var i = 0; i < 18; i++) {
+        var s = document.createElement("div");
+        s.className = "sparkle";
+        var size = 2 + Math.random() * 3;
+        s.style.width = size + "px";
+        s.style.height = size + "px";
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 70 + "%";
+        s.style.animationDelay = Math.random() * 3.4 + "s";
+        heroSection.appendChild(s);
+      }
+
+      /* tilt + magnetic (desktop only) */
+      var hasHover = window.matchMedia("(hover: hover)").matches;
+      if (hasHover) {
+        document
+          .querySelectorAll(".cat-card, .ch-card, .loc-single")
+          .forEach(function (card) {
+            card.addEventListener("mousemove", function (e) {
+              var r = card.getBoundingClientRect();
+              var x = (e.clientX - r.left) / r.width - 0.5;
+              var y = (e.clientY - r.top) / r.height - 0.5;
+              card.style.transform =
+                "perspective(700px) rotateX(" +
+                (-y * 5).toFixed(2) +
+                "deg) rotateY(" +
+                (x * 5).toFixed(2) +
+                "deg) translateY(-4px)";
+            });
+            card.addEventListener("mouseleave", function () {
+              card.style.transform = "";
+            });
+          });
+        document.querySelectorAll(".cta-btn").forEach(function (btn) {
+          btn.addEventListener("mousemove", function (e) {
+            var r = btn.getBoundingClientRect();
+            var x = (e.clientX - r.left - r.width / 2) * 0.22;
+            var y = (e.clientY - r.top - r.height / 2) * 0.45;
+            btn.style.transform = "translate(" + x + "px, " + y + "px)";
+          });
+          btn.addEventListener("mouseleave", function () {
+            btn.style.transform = "";
+          });
+        });
+      }
+
+      /* ---------- Atacado / Varejo mode toggle ---------- */
+      var modeContent = {
+        varejo: {
+          text: "Você está comprando <strong>pra usar</strong>: peças escolhidas com cuidado, sem quantidade mínima, com atendimento pessoal na loja ou pelo canal de varejo.",
+          cta: "Comprar no varejo",
+          link: "https://instagram.com/narclejoiasvarejo",
+        },
+        atacado: {
+          text: "Você é <strong>lojista</strong>: condições especiais por volume, suporte dedicado e novidades em primeira mão pelo canal de atacado da NarCle.",
+          cta: "Comprar no atacado",
+          link: "https://instagram.com/narclejoiasatacado",
+        },
+      };
+      var modeButtons = document.querySelectorAll(".mode-btn");
+      var modePanel = document.getElementById("modePanel");
+      var modeCta = document.getElementById("modeCta");
+
+      function setMode(mode) {
+        modeButtons.forEach(function (btn) {
+          btn.classList.toggle("active", btn.dataset.mode === mode);
+        });
+        modePanel.innerHTML = "<p>" + modeContent[mode].text + "</p>";
+        modeCta.textContent = modeContent[mode].cta;
+        modeCta.href = modeContent[mode].link;
+      }
+      modeButtons.forEach(function (btn) {
+        btn.addEventListener("click", function () {
+          setMode(btn.dataset.mode);
+        });
+      });
+      setMode("varejo");
+    </script>
+  </body>
+</html>
