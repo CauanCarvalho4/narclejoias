@@ -1,12 +1,14 @@
 // firebase-config.js
-// Preencha com as credenciais do SEU projeto Firebase (Configurações do projeto > Geral > SDK setup).
-// Esse arquivo é importado pelo index.html e pelo admin.html — só precisa editar aqui.
+
+import { initializeApp } from "firebase/app";
 
 export const firebaseConfig = {
-  apiKey: "COLE_AQUI_SUA_API_KEY",
-  authDomain: "SEU_PROJETO.firebaseapp.com",
-  projectId: "SEU_PROJETO",
-  storageBucket: "SEU_PROJETO.appspot.com",
-  messagingSenderId: "SEU_SENDER_ID",
-  appId: "SEU_APP_ID"
+  apiKey: "AIzaSyD8vmu6_0i1UNfXDXTA4UDXfn8TyLKjcUc",
+  authDomain: "narcle-joias.firebaseapp.com",
+  projectId: "narcle-joias",
+  storageBucket: "narcle-joias.firebasestorage.app",
+  messagingSenderId: "650402693382",
+  appId: "1:650402693382:web:758d3256152e75108ade87"
 };
+
+export const app = initializeApp(firebaseConfig);

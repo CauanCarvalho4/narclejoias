@@ -3,1479 +3,1706 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>NarCle Joias — Brilho tem marca | Caxias-MA</title>
+    <title>NarCle Joias — Brilho tem Marca</title>
     <meta
       name="description"
-      content="Joias, semijoias e relógios há 36 anos em Caxias-MA. Atacado e varejo."
+      content="NarCle Joias — 36 anos de tradição em semijoias, prata e relógios. Compre no atacado ou no varejo."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Montserrat:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <style>
       :root {
-        --black: #0b0b0c;
-        --charcoal: #17161a;
-        --charcoal-2: #1f1d22;
-        --gold: #cba135;
-        --gold-light: #e8cd82;
-        --ivory: #f7f3ea;
-        --ink-dim: rgba(247, 243, 234, 0.62);
-        --line: rgba(247, 243, 234, 0.13);
-        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --preto: #0a0a0b;
+        --carvao: #17161a;
+        --carvao-2: #201e23;
+        --dourado: #c9a227;
+        --dourado-claro: #e8cd7a;
+        --dourado-suave: #f4e9cf;
+        --vinho: #6b1e2b;
+        --creme: #f6f1e6;
+        --creme-fraco: #b9b3a5;
+        --linha: rgba(201, 162, 39, 0.22);
+        --serif: "Cormorant Garamond", "Times New Roman", serif;
+        --sans: "Montserrat", "Segoe UI", sans-serif;
+        --radius: 4px;
+        --ease: cubic-bezier(0.22, 0.68, 0.24, 1);
       }
       * {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
       }
       html {
         scroll-behavior: smooth;
       }
       body {
-        background: var(--black);
-        color: var(--ivory);
-        font-family: "Inter", sans-serif;
-        overflow-x: hidden;
+        margin: 0;
+        background: var(--preto);
+        color: var(--creme);
+        font-family: var(--sans);
+        line-height: 1.6;
         -webkit-font-smoothing: antialiased;
-      }
-      h1,
-      h2,
-      h3,
-      .display {
-        font-family: "Playfair Display", serif;
-        font-weight: 600;
-        line-height: 1.08;
-        letter-spacing: -0.005em;
-      }
-      em {
-        font-style: italic;
-        font-weight: 500;
-        color: var(--gold-light);
-      }
-      .mono {
-        font-family: "Space Mono", monospace;
-      }
-      a {
-        color: inherit;
-        text-decoration: none;
+        overflow-x: hidden;
       }
       img {
         max-width: 100%;
         display: block;
       }
-      .wrap {
-        max-width: 1160px;
-        margin: 0 auto;
-        padding: 0 28px;
-      }
-      ::selection {
-        background: var(--gold);
-        color: var(--black);
+      a {
+        color: inherit;
+        text-decoration: none;
       }
       button {
-        font: inherit;
+        font-family: inherit;
         cursor: pointer;
       }
-      @media (prefers-reduced-motion: reduce) {
-        * {
-          animation-duration: 0.001ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.001ms !important;
-          scroll-behavior: auto !important;
-        }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: var(--serif);
+        font-weight: 600;
+        margin: 0;
+        color: var(--creme);
+      }
+      p {
+        margin: 0;
+      }
+      :focus-visible {
+        outline: 2px solid var(--dourado-claro);
+        outline-offset: 3px;
       }
 
-      .progress {
+      .glow-cursor {
         position: fixed;
-        top: 0;
-        left: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--gold), var(--gold-light));
-        z-index: 100;
-        width: 0%;
-        transition: width 0.1s linear;
-      }
-      .grain {
-        position: fixed;
-        inset: 0;
+        width: 420px;
+        height: 420px;
+        border-radius: 50%;
+        background: radial-gradient(
+          circle,
+          rgba(201, 162, 39, 0.1),
+          transparent 70%
+        );
         pointer-events: none;
         z-index: 1;
-        opacity: 0.04;
-        mix-blend-mode: overlay;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      }
-
-      .marquee {
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        overflow: hidden;
-        background: var(--charcoal);
-        position: relative;
-        z-index: 3;
-      }
-      .marquee-track {
-        display: inline-flex;
-        gap: 3.2rem;
-        padding: 0.85rem 0;
-        white-space: nowrap;
-        animation: marquee 30s linear infinite;
-      }
-      .marquee-track span {
-        font-family: "Space Mono";
-        font-size: 0.68rem;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-        color: var(--gold-light);
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-      }
-      .marquee-track span::before {
-        content: "◆";
-        font-size: 0.55rem;
-        color: var(--ink-dim);
-      }
-      @keyframes marquee {
-        from {
-          transform: translateX(0);
-        }
-        to {
-          transform: translateX(-50%);
-        }
-      }
-
-      header {
-        position: sticky;
-        top: 0;
-        z-index: 80;
-        background: rgba(11, 11, 12, 0.78);
-        backdrop-filter: blur(14px) saturate(140%);
-        border-bottom: 1px solid var(--line);
-      }
-      nav.wrap {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 16px 28px;
-      }
-      .brand {
-        display: flex;
-        align-items: center;
-        gap: 0.7rem;
-      }
-      .brand-mark {
-        width: 42px;
-        height: 42px;
-        border-radius: 50%;
-        flex-shrink: 0;
-        background: conic-gradient(
-          from 200deg,
-          var(--gold),
-          var(--gold-light),
-          var(--gold)
-        );
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2px;
-      }
-      .brand-mark span {
-        width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        background: var(--black);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Playfair Display";
-        font-weight: 700;
-        color: var(--gold-light);
-        font-size: 1.05rem;
-        font-style: italic;
-      }
-      .brand-name {
-        font-family: "Playfair Display";
-        font-weight: 600;
-        font-size: 1.15rem;
-        letter-spacing: 0.01em;
-      }
-      .brand-name small {
-        display: block;
-        font-family: "Space Mono";
-        font-weight: 400;
-        font-size: 0.56rem;
-        color: var(--gold-light);
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        margin-top: 0.1rem;
-      }
-      .nav-links {
-        display: flex;
-        gap: 2.1rem;
-        font-size: 0.86rem;
-        font-weight: 500;
-      }
-      .nav-links a {
-        position: relative;
-        opacity: 0.82;
-        transition: opacity 0.25s;
-        padding: 0.3rem 0;
-      }
-      .nav-links a::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 0;
-        height: 1px;
-        background: var(--gold);
-        transition: width 0.3s var(--ease);
-      }
-      .nav-links a:hover {
-        opacity: 1;
-      }
-      .nav-links a:hover::after {
-        width: 100%;
-      }
-      .cta-btn {
-        background: transparent;
-        color: var(--ivory);
-        font-weight: 600;
-        font-family: "Inter";
-        padding: 0.7rem 1.45rem;
-        border-radius: 999px;
-        font-size: 0.84rem;
-        border: 1px solid var(--gold);
-        transition:
-          background 0.3s var(--ease),
-          color 0.3s var(--ease),
-          transform 0.25s var(--ease),
-          box-shadow 0.3s var(--ease);
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        white-space: nowrap;
-      }
-      .cta-btn:hover {
-        background: var(--gold);
-        color: var(--black);
-        box-shadow: 0 8px 24px rgba(203, 161, 53, 0.28);
-      }
-      .cta-btn.solid {
-        background: var(--gold);
-        color: var(--black);
-      }
-      .cta-btn.solid:hover {
-        background: var(--gold-light);
-      }
-      .desktop-only {
-        display: flex;
-      }
-      .hamburger {
-        display: none;
-        flex-direction: column;
-        gap: 5px;
-        width: 42px;
-        height: 42px;
-        align-items: center;
-        justify-content: center;
-        border: 1px solid var(--line);
-        border-radius: 50%;
-        background: transparent;
-        flex-shrink: 0;
-      }
-      .hamburger span {
-        width: 18px;
-        height: 1.5px;
-        background: var(--ivory);
-        transition:
-          transform 0.3s var(--ease),
-          opacity 0.3s var(--ease);
-      }
-      .hamburger.open span:nth-child(1) {
-        transform: translateY(6.5px) rotate(45deg);
-      }
-      .hamburger.open span:nth-child(2) {
+        transform: translate(-50%, -50%);
+        transition: opacity 0.3s;
         opacity: 0;
-      }
-      .hamburger.open span:nth-child(3) {
-        transform: translateY(-6.5px) rotate(-45deg);
-      }
-      @media (max-width: 900px) {
-        .nav-links {
-          display: none;
-        }
-        .desktop-only {
-          display: none;
-        }
-        .hamburger {
-          display: flex;
-        }
-      }
-
-      .drawer-overlay {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.6);
-        backdrop-filter: blur(2px);
-        z-index: 90;
-        opacity: 0;
-        pointer-events: none;
-        transition: opacity 0.35s var(--ease);
-      }
-      .drawer-overlay.open {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      .drawer {
-        position: fixed;
-        top: 0;
-        right: 0;
-        height: 100%;
-        width: min(78vw, 340px);
-        z-index: 95;
-        background: var(--charcoal);
-        border-left: 1px solid var(--line);
-        transform: translateX(100%);
-        transition: transform 0.45s var(--ease);
-        display: flex;
-        flex-direction: column;
-        padding: 28px 30px;
-      }
-      .drawer.open {
-        transform: translateX(0);
-      }
-      .drawer-top {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 3rem;
-      }
-      .drawer-close {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        border: 1px solid var(--line);
-        background: transparent;
-        color: var(--ivory);
-        font-size: 1.1rem;
-      }
-      .drawer-links {
-        display: flex;
-        flex-direction: column;
-        gap: 1.6rem;
-      }
-      .drawer-links a {
-        font-family: "Playfair Display";
-        font-size: 1.5rem;
-        font-weight: 600;
-        color: var(--ivory);
-        opacity: 0;
-        transform: translateX(16px);
-        transition:
-          opacity 0.4s var(--ease),
-          transform 0.4s var(--ease);
-      }
-      .drawer.open .drawer-links a {
-        opacity: 1;
-        transform: none;
-      }
-      .drawer.open .drawer-links a:nth-child(1) {
-        transition-delay: 0.08s;
-      }
-      .drawer.open .drawer-links a:nth-child(2) {
-        transition-delay: 0.14s;
-      }
-      .drawer.open .drawer-links a:nth-child(3) {
-        transition-delay: 0.2s;
-      }
-      .drawer.open .drawer-links a:nth-child(4) {
-        transition-delay: 0.26s;
-      }
-      .drawer-foot {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 0.9rem;
-      }
-      .drawer-foot .cta-btn {
-        justify-content: center;
-        width: 100%;
-        padding: 1rem;
-      }
-      .drawer-foot small {
-        font-family: "Space Mono";
-        font-size: 0.62rem;
-        letter-spacing: 0.1em;
-        color: var(--ink-dim);
-        text-transform: uppercase;
-        text-align: center;
-      }
-
-      .hero {
-        position: relative;
-        padding: 108px 28px 70px;
-        text-align: center;
-        overflow: hidden;
-        background:
-          radial-gradient(
-            70% 55% at 50% 0%,
-            rgba(203, 161, 53, 0.14),
-            transparent 72%
-          ),
-          var(--black);
-      }
-      .sparkle {
-        position: absolute;
-        border-radius: 50%;
-        background: var(--gold-light);
-        opacity: 0;
-        animation: twinkle 3.4s ease-in-out infinite;
-      }
-      @keyframes twinkle {
-        0%,
-        100% {
-          opacity: 0;
-          transform: scale(0.4);
-        }
-        50% {
-          opacity: 0.9;
-          transform: scale(1);
-        }
-      }
-      .hero-inner {
-        position: relative;
-        z-index: 2;
-        opacity: 0;
-        transform: translateY(18px);
-        animation: hero-in 1s var(--ease) 0.15s forwards;
-      }
-      @keyframes hero-in {
-        to {
-          opacity: 1;
-          transform: none;
-        }
-      }
-      .eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.6rem;
-        font-family: "Space Mono";
-        font-size: 0.68rem;
-        letter-spacing: 0.2em;
-        text-transform: uppercase;
-        color: var(--gold-light);
-      }
-      .eyebrow::before {
-        content: "";
-        width: 22px;
-        height: 1px;
-        background: var(--gold-light);
-      }
-      .hero h1 {
-        font-size: clamp(2.5rem, 6.6vw, 4.6rem);
-        color: var(--ivory);
-        margin: 1.6rem 0 1.3rem;
-      }
-      .hero p.lede {
-        max-width: 520px;
-        margin: 0 auto 2.2rem;
-        font-size: 1.06rem;
-        color: var(--ink-dim);
-        line-height: 1.65;
-      }
-
-      /* atacado / varejo toggle */
-      .mode-toggle {
-        display: inline-flex;
-        background: rgba(247, 243, 234, 0.06);
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        padding: 0.3rem;
-        margin-bottom: 2.4rem;
-      }
-      .mode-btn {
-        padding: 0.6rem 1.5rem;
-        border-radius: 999px;
-        font-family: "Inter";
-        font-weight: 700;
-        font-size: 0.85rem;
-        color: var(--ink-dim);
-        background: transparent;
-        transition: all 0.3s var(--ease);
-      }
-      .mode-btn.active {
-        background: var(--gold);
-        color: var(--black);
-      }
-      .mode-panel {
-        max-width: 480px;
-        margin: 0 auto 2.6rem;
-        padding: 1.4rem 1.6rem;
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        background: rgba(247, 243, 234, 0.03);
-      }
-      .mode-panel p {
-        font-size: 0.9rem;
-        color: var(--ink-dim);
-        line-height: 1.55;
-      }
-      .mode-panel strong {
-        color: var(--gold-light);
-      }
-      .hero-ctas {
-        display: flex;
-        gap: 1rem;
-        justify-content: center;
-        flex-wrap: wrap;
-        margin-bottom: 3rem;
-      }
-      .hero-ctas .cta-btn {
-        padding: 0.95rem 1.9rem;
-        font-size: 0.9rem;
-      }
-      .hero-stats {
-        display: flex;
-        gap: 0;
-        justify-content: center;
-        flex-wrap: wrap;
-        border-top: 1px solid var(--line);
-        padding-top: 2rem;
-        max-width: 560px;
-        margin: 0 auto;
-      }
-      .hero-stats div {
-        text-align: center;
-        flex: 1;
-        min-width: 130px;
-        padding: 0 1rem;
-        border-left: 1px solid var(--line);
-      }
-      .hero-stats div:first-child {
-        border-left: none;
-      }
-      .hero-stats strong {
-        display: block;
-        font-family: "Playfair Display";
-        font-size: 1.9rem;
-        color: var(--gold-light);
-        font-weight: 600;
-      }
-      .hero-stats span {
-        font-size: 0.64rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--ink-dim);
-      }
-      .wave {
-        position: relative;
-        z-index: 2;
-        margin-top: 40px;
-        line-height: 0;
-      }
-      .wave svg {
-        width: 100%;
-        height: 64px;
-        display: block;
-      }
-
-      section {
-        position: relative;
-        z-index: 2;
-        padding: 96px 0;
-      }
-      .section-head {
-        max-width: 600px;
-        margin-bottom: 3.2rem;
-      }
-      .section-head .eyebrow {
-        margin-bottom: 1rem;
-        display: inline-flex;
-      }
-      .section-head h2 {
-        font-size: clamp(1.9rem, 4vw, 2.7rem);
-        color: var(--ivory);
-      }
-      .section-head p {
-        color: var(--ink-dim);
-        margin-top: 1.1rem;
-        line-height: 1.65;
-        font-size: 1rem;
-      }
-
-      .about {
-        background: var(--charcoal);
-      }
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-        align-items: center;
-      }
-      @media (max-width: 860px) {
-        .about-grid {
-          grid-template-columns: 1fr;
-          gap: 2.6rem;
-        }
-      }
-      .about-card {
-        background: linear-gradient(165deg, #26221a, var(--black));
-        border-radius: 4px;
-        padding: 2.6rem;
-        border: 1px solid var(--line);
-        position: relative;
-        overflow: hidden;
-      }
-      .about-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: linear-gradient(90deg, var(--gold), transparent);
-      }
-      .about-card h3 {
-        color: var(--gold-light);
-        font-size: 1.3rem;
-        margin-bottom: 1rem;
-        font-weight: 500;
-        font-style: italic;
-      }
-      .about-card p {
-        color: var(--ink-dim);
-        line-height: 1.75;
-        font-size: 0.95rem;
-      }
-      .badge-row {
-        display: flex;
-        gap: 0.7rem;
-        margin-top: 1.8rem;
-        flex-wrap: wrap;
-      }
-      .badge {
-        font-family: "Space Mono";
-        font-size: 0.64rem;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        border: 1px solid var(--line);
-        padding: 0.42rem 0.8rem;
-        border-radius: 2px;
-        color: var(--ink-dim);
-      }
-      .about-text p {
-        color: var(--ink-dim);
-        line-height: 1.8;
-        margin-bottom: 1.3rem;
-        font-size: 1.02rem;
-      }
-      .about-text strong {
-        color: var(--ivory);
-        font-weight: 600;
-      }
-
-      .categories {
-        background: var(--black);
-      }
-      .cat-grid {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 1.3rem;
-      }
-      @media (max-width: 900px) {
-        .cat-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-      }
-      @media (max-width: 520px) {
-        .cat-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .cat-card {
-        background: rgba(247, 243, 234, 0.03);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-        padding: 2.2rem 1.6rem;
-        text-align: center;
-        transition:
-          transform 0.4s var(--ease),
-          border-color 0.3s,
-          background 0.3s;
-        will-change: transform;
-      }
-      .cat-card:hover {
-        border-color: var(--gold);
-        background: rgba(203, 161, 53, 0.05);
-      }
-      .cat-icon {
-        width: 48px;
-        height: 48px;
-        margin: 0 auto 1.2rem;
-        border-radius: 50%;
-        border: 1px solid var(--gold-light);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: "Playfair Display";
-        font-style: italic;
-        color: var(--gold-light);
-        font-size: 1.3rem;
-      }
-      .cat-card h3 {
-        font-size: 1.15rem;
-        color: var(--ivory);
-        font-weight: 500;
-      }
-
-      .channels {
-        background: var(--charcoal);
-      }
-      .ch-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.6rem;
-      }
-      @media (max-width: 760px) {
-        .ch-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      .ch-card {
-        background: rgba(247, 243, 234, 0.03);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-        padding: 2.6rem;
-        position: relative;
-        overflow: hidden;
-        transition: border-color 0.3s;
-      }
-      .ch-card:hover {
-        border-color: var(--gold);
-      }
-      .ch-card.atacado::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--gold);
-      }
-      .ch-card.varejo::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 2px;
-        background: var(--gold-light);
-      }
-      .ch-tag {
-        font-family: "Space Mono";
-        font-size: 0.62rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--gold-light);
-        border: 1px solid var(--gold-light);
-        display: inline-block;
-        padding: 0.32rem 0.75rem;
-        border-radius: 999px;
-        margin-bottom: 1.2rem;
-      }
-      .ch-card h3 {
-        font-size: 1.5rem;
-        margin-bottom: 0.8rem;
-      }
-      .ch-card p {
-        color: var(--ink-dim);
-        font-size: 0.92rem;
-        line-height: 1.65;
-        margin-bottom: 1.6rem;
-      }
-      .ch-card ul {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-        gap: 0.6rem;
-        margin-bottom: 1.8rem;
-      }
-      .ch-card li {
-        font-size: 0.86rem;
-        color: var(--ink-dim);
-        display: flex;
-        align-items: center;
-        gap: 0.6rem;
-      }
-      .ch-card li::before {
-        content: "✦";
-        color: var(--gold);
-        font-size: 0.7rem;
-      }
-
-      .location {
-        background: var(--black);
-      }
-      .loc-single {
-        max-width: 640px;
-        background: rgba(247, 243, 234, 0.03);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-        padding: 2.4rem;
-      }
-      .loc-tag {
-        font-family: "Space Mono";
-        font-size: 0.6rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--gold-light);
-        border: 1px solid var(--gold-light);
-        display: inline-block;
-        padding: 0.32rem 0.75rem;
-        border-radius: 999px;
-        margin-bottom: 1.2rem;
-      }
-      .loc-single h3 {
-        font-size: 1.4rem;
-        color: var(--ivory);
-        margin-bottom: 0.5rem;
-        font-weight: 500;
-      }
-      .loc-single .addr {
-        color: var(--ink-dim);
-        font-size: 0.92rem;
-        margin-bottom: 1.4rem;
-        line-height: 1.5;
-      }
-      .loc-single .wa {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.55rem;
-        font-family: "Space Mono";
-        font-weight: 700;
-        color: var(--gold-light);
-        font-size: 0.95rem;
-        border-top: 1px solid var(--line);
-        padding-top: 1.2rem;
-        width: 100%;
-      }
-
-      .social {
-        background: var(--charcoal);
-        text-align: center;
-      }
-      .ig-card {
-        max-width: 460px;
-        margin: 0 auto;
-        background: rgba(247, 243, 234, 0.03);
-        border: 1px solid var(--line);
-        border-radius: 4px;
-        padding: 2.8rem;
-      }
-      .ig-stats {
-        display: flex;
-        justify-content: center;
-        gap: 0;
-        margin: 1.6rem 0 2rem;
-        border-top: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
-        padding: 1.6rem 0;
-      }
-      .ig-stats div {
-        flex: 1;
-        border-left: 1px solid var(--line);
-      }
-      .ig-stats div:first-child {
-        border-left: none;
-      }
-      .ig-stats div strong {
-        display: block;
-        font-family: "Playfair Display";
-        font-size: 1.6rem;
-        color: var(--gold-light);
-        font-weight: 600;
-      }
-      .ig-stats div span {
-        font-size: 0.62rem;
-        text-transform: uppercase;
-        letter-spacing: 0.1em;
-        color: var(--ink-dim);
-      }
-      .ig-links {
-        display: flex;
-        gap: 0.8rem;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-
-      footer {
-        background: var(--black);
-        padding: 3.2rem 0 2rem;
-        border-top: 1px solid var(--line);
-      }
-      .foot-grid {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        gap: 2.4rem;
-        margin-bottom: 2.4rem;
-      }
-      .foot-links {
-        display: flex;
-        gap: 3rem;
-        flex-wrap: wrap;
-      }
-      .foot-links div h5 {
-        font-family: "Space Mono";
-        font-size: 0.64rem;
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        color: var(--gold-light);
-        margin-bottom: 0.9rem;
-      }
-      .foot-links div a {
-        display: block;
-        color: var(--ink-dim);
-        font-size: 0.86rem;
-        margin-bottom: 0.55rem;
-        transition: color 0.25s;
-      }
-      .foot-links div a:hover {
-        color: var(--ivory);
-      }
-      .foot-bottom {
-        text-align: center;
-        color: var(--ink-dim);
-        font-size: 0.74rem;
-        padding-top: 1.8rem;
-        border-top: 1px solid var(--line);
       }
 
       .reveal {
         opacity: 0;
-        transform: translateY(26px);
+        transform: translateY(28px);
         transition:
           opacity 0.8s var(--ease),
           transform 0.8s var(--ease);
       }
       .reveal.in {
         opacity: 1;
-        transform: none;
+        transform: translateY(0);
+      }
+      .reveal-stagger > * {
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .reveal-stagger.in > * {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-stagger.in > *:nth-child(1) {
+        transition-delay: 0.05s;
+      }
+      .reveal-stagger.in > *:nth-child(2) {
+        transition-delay: 0.14s;
+      }
+      .reveal-stagger.in > *:nth-child(3) {
+        transition-delay: 0.23s;
+      }
+      .reveal-stagger.in > *:nth-child(4) {
+        transition-delay: 0.32s;
+      }
+
+      .eyebrow {
+        font-size: 12px;
+        letter-spacing: 0.28em;
+        text-transform: uppercase;
+        color: var(--dourado);
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .eyebrow::before {
+        content: "";
+        width: 28px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, var(--dourado));
+        display: inline-block;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 40;
+        background: rgba(10, 10, 11, 0.7);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--linha);
+        transition: background 0.3s;
+      }
+      .site-header.scrolled {
+        background: rgba(10, 10, 11, 0.94);
+      }
+      .header-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 28px;
+        max-width: 1180px;
+        margin: 0 auto;
+        transition: padding 0.3s var(--ease);
+      }
+      .site-header.scrolled .header-inner {
+        padding: 12px 28px;
+      }
+      .logo-word {
+        font-family: var(--serif);
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: 0.02em;
+        color: var(--dourado-claro);
+        position: relative;
+      }
+      .ring-c {
+        position: relative;
+      }
+      .ring-c svg {
+        position: absolute;
+        top: -13px;
+        left: 2px;
+        width: 20px;
+        height: 20px;
+        filter: drop-shadow(0 0 6px rgba(201, 162, 39, 0.6));
+      }
+      .logo-tagline {
+        display: block;
+        font-size: 8.5px;
+        letter-spacing: 0.32em;
+        color: var(--creme-fraco);
+        margin-top: 2px;
+      }
+      .nav-links {
+        display: flex;
+        gap: 34px;
+      }
+      .nav-links a {
+        font-size: 12.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--creme-fraco);
+        transition: color 0.25s;
+        padding: 4px 0;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 0;
+        height: 1px;
+        background: var(--dourado);
+        transition: width 0.3s var(--ease);
+      }
+      .nav-links a:hover {
+        color: var(--dourado-claro);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .header-cta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+      }
+      .icon {
+        width: 1em;
+        height: 1em;
+        stroke: currentColor;
+        fill: none;
+        stroke-width: 1.5;
+      }
+      .menu-toggle {
+        display: none;
+        background: none;
+        border: 1px solid var(--linha);
+        border-radius: 4px;
+        width: 42px;
+        height: 42px;
+        align-items: center;
+        justify-content: center;
+        color: var(--dourado-claro);
+      }
+      .menu-toggle .icon {
+        width: 20px;
+        height: 20px;
+      }
+      .mobile-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 90;
+        background: rgba(8, 8, 9, 0.98);
+        display: flex;
+        flex-direction: column;
+        padding: 26px 28px 40px;
+        transform: translateY(-100%);
+        transition: transform 0.45s var(--ease);
+      }
+      .mobile-menu.open {
+        transform: translateY(0);
+      }
+      .mobile-menu-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mobile-menu-close {
+        background: none;
+        border: 1px solid var(--linha);
+        border-radius: 4px;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dourado-claro);
+      }
+      .mobile-menu-close .icon {
+        width: 18px;
+        height: 18px;
+      }
+      .mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        margin-top: 50px;
+      }
+      .mobile-nav a {
+        font-family: var(--serif);
+        font-size: 30px;
+        color: var(--creme);
+        padding: 16px 4px;
+        border-bottom: 1px solid var(--linha);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .mobile-nav a .icon {
+        width: 18px;
+        height: 18px;
+        color: var(--dourado);
+      }
+      .mobile-menu-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        margin-top: 40px;
+      }
+      .mobile-menu-actions .btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 13px;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 12px 26px;
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        border-radius: var(--radius);
+        border: 1px solid transparent;
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.3s,
+          background 0.3s,
+          color 0.3s,
+          border-color 0.3s;
+        position: relative;
+        overflow: hidden;
+      }
+      .btn-gold {
+        background: linear-gradient(
+          135deg,
+          var(--dourado-claro),
+          var(--dourado)
+        );
+        color: var(--preto);
+        font-weight: 700;
+      }
+      .btn-gold::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent 0%,
+          rgba(255, 255, 255, 0.55) 50%,
+          transparent 100%
+        );
+        transform: translateX(-120%);
+        transition: transform 0.6s var(--ease);
+      }
+      .btn-gold:hover::before {
+        transform: translateX(120%);
+      }
+      .btn-gold:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 28px rgba(201, 162, 39, 0.32);
+      }
+      .btn-outline {
+        border-color: var(--dourado);
+        color: var(--dourado-claro);
+        background: transparent;
+      }
+      .btn-outline:hover {
+        background: rgba(201, 162, 39, 0.1);
+        transform: translateY(-2px);
+      }
+
+      .hero {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        padding: 130px 28px 100px;
+        text-align: center;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            ellipse at 50% -10%,
+            rgba(201, 162, 39, 0.16),
+            transparent 55%
+          ),
+          var(--preto);
+      }
+      .hero-stars {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .star {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--dourado-claro);
+        animation: twinkle 3.5s ease-in-out infinite;
+      }
+      @keyframes twinkle {
+        0%,
+        100% {
+          opacity: 0.15;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.9;
+          transform: scale(1.6);
+        }
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 500px;
+        margin: 10px auto;
+        gap: 10px;
+        border: 1px solid var(--linha);
+        padding: 10px 18px;
+        border-radius: 999px;
+        font-size: 11px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--dourado-claro);
+        margin-bottom: 34px;
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease) 0.1s forwards;
+      }
+      .hero-logo {
+        font-family: var(--serif);
+        font-size: clamp(56px, 11vw, 132px);
+        line-height: 0.95;
+        font-weight: 700;
+        color: var(--dourado-claro);
+        position: relative;
+        display: inline-block;
+        opacity: 0;
+        animation: fadeUp 1s var(--ease) 0.25s forwards;
+        text-shadow: 0 0 40px rgba(201, 162, 39, 0.25);
+      }
+      .hero-logo .ring-c svg {
+        width: clamp(30px, 6vw, 62px);
+        height: clamp(30px, 6vw, 62px);
+        top: clamp(-26px, -4vw, -48px);
+        left: 6px;
+      }
+      .hero-tagline {
+        font-size: clamp(11px, 1.6vw, 14px);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        color: var(--creme-fraco);
+        margin-top: 18px;
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease) 0.45s forwards;
+      }
+      .hero-sub {
+        max-width: 560px;
+        margin: 34px auto 0;
+        font-size: 16.5px;
+        color: var(--creme-fraco);
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease) 0.6s forwards;
+      }
+      .hero-actions {
+        display: flex;
+        gap: 18px;
+        justify-content: center;
+        margin-top: 44px;
+        flex-wrap: wrap;
+        opacity: 0;
+        animation: fadeUp 0.8s var(--ease) 0.75s forwards;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(22px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .scroll-cue {
+        position: absolute;
+        bottom: 26px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 22px;
+        height: 36px;
+        border: 1px solid var(--linha);
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        padding-top: 7px;
+      }
+      .scroll-cue span {
+        width: 3px;
+        height: 8px;
+        background: var(--dourado);
+        border-radius: 2px;
+        animation: scrollDown 1.8s ease-in-out infinite;
+      }
+      @keyframes scrollDown {
+        0% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+        70% {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .section {
+        padding: 100px 28px;
+      }
+      .section-head {
+        text-align: center;
+        max-width: 620px;
+        margin: 0 auto 56px;
+      }
+      .section-title {
+        font-size: clamp(30px, 4vw, 44px);
+        margin-top: 14px;
+      }
+      .section-desc {
+        color: var(--creme-fraco);
+        margin-top: 14px;
+        font-size: 15.5px;
+      }
+
+      .cat-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 18px;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .cat-card {
+        background: linear-gradient(165deg, var(--carvao), var(--carvao-2));
+        border: 1px solid var(--linha);
+        border-radius: var(--radius);
+        padding: 40px 20px;
+        text-align: center;
+        transition:
+          border-color 0.3s,
+          transform 0.35s var(--ease),
+          box-shadow 0.35s;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+      .cat-card::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        background: radial-gradient(
+          circle at 50% 0%,
+          rgba(201, 162, 39, 0.16),
+          transparent 65%
+        );
+        transition: opacity 0.35s;
+      }
+      .cat-card:hover {
+        border-color: var(--dourado);
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+      }
+      .cat-card:hover::after {
+        opacity: 1;
+      }
+      .cat-icon {
+        font-size: 32px;
+        margin-bottom: 16px;
+        transition: transform 0.35s var(--ease);
+      }
+      .cat-card:hover .cat-icon {
+        transform: scale(1.18) rotate(-4deg);
+      }
+      .cat-name {
+        font-family: var(--serif);
+        font-size: 20px;
+        color: var(--dourado-claro);
+        position: relative;
+      }
+      .cat-count {
+        font-size: 11.5px;
+        color: var(--creme-fraco);
+        margin-top: 6px;
+        letter-spacing: 0.08em;
+        position: relative;
+      }
+
+      .filters {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 44px;
+      }
+      .filter-chip {
+        padding: 9px 20px;
+        border-radius: 999px;
+        border: 1px solid var(--linha);
+        font-size: 12px;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--creme-fraco);
+        background: transparent;
+        transition: all 0.25s;
+      }
+      .filter-chip.active,
+      .filter-chip:hover {
+        border-color: var(--dourado);
+        color: var(--dourado-claro);
+        background: rgba(201, 162, 39, 0.08);
+      }
+      .prod-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 26px;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .prod-card {
+        background: var(--carvao);
+        border: 1px solid var(--linha);
+        overflow: hidden;
+        position: relative;
+        transition:
+          transform 0.4s var(--ease),
+          border-color 0.3s,
+          box-shadow 0.4s;
+      }
+      .prod-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--dourado);
+        box-shadow: 0 24px 44px rgba(0, 0, 0, 0.4);
+      }
+      .prod-photo {
+        aspect-ratio: 1/1;
+        background: linear-gradient(150deg, #232025, #141316);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        position: relative;
+      }
+      .prod-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s var(--ease);
+      }
+      .prod-card:hover .prod-photo img {
+        transform: scale(1.08);
+      }
+      .prod-photo .ph-empty {
+        font-size: 34px;
+        opacity: 0.35;
+      }
+      .prod-badge {
+        position: absolute;
+        top: 12px;
+        left: 12px;
+        background: var(--vinho);
+        color: var(--dourado-suave);
+        font-size: 10.5px;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 5px 12px;
+        border-radius: 999px;
+      }
+      .prod-body {
+        padding: 20px 22px 24px;
+      }
+      .prod-cat {
+        font-size: 10.5px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dourado);
+      }
+      .prod-name {
+        font-family: var(--serif);
+        font-size: 21px;
+        margin-top: 8px;
+      }
+      .prod-price-row {
+        display: flex;
+        align-items: baseline;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .prod-price {
+        font-size: 19px;
+        color: var(--dourado-claro);
+        font-weight: 600;
+      }
+      .prod-price-old {
+        font-size: 13.5px;
+        color: var(--creme-fraco);
+        text-decoration: line-through;
+      }
+      .prod-cta {
+        margin-top: 16px;
+        width: 100%;
+        padding: 11px;
+        background: transparent;
+        border: 1px solid var(--linha);
+        color: var(--creme);
+        font-size: 11.5px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        transition: all 0.25s;
+      }
+      .prod-cta:hover {
+        border-color: var(--dourado);
+        color: var(--dourado-claro);
+        background: rgba(201, 162, 39, 0.06);
+      }
+      .empty-state {
+        text-align: center;
+        padding: 70px 20px;
+        color: var(--creme-fraco);
+        border: 1px dashed var(--linha);
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+
+      .sobre {
+        background: var(--carvao);
+        border-top: 1px solid var(--linha);
+        border-bottom: 1px solid var(--linha);
+      }
+      .sobre-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 70px;
+        align-items: center;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .sobre-num {
+        font-family: var(--serif);
+        font-size: 120px;
+        color: var(--dourado);
+        line-height: 1;
+      }
+      .sobre-num-label {
+        font-size: 12.5px;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--creme-fraco);
+        margin-top: 10px;
+      }
+      .sobre-text p {
+        color: var(--creme-fraco);
+        margin-top: 18px;
+        font-size: 15.5px;
+      }
+      .sobre-stats {
+        display: flex;
+        gap: 46px;
+        margin-top: 34px;
+      }
+      .stat b {
+        display: block;
+        font-family: var(--serif);
+        font-size: 32px;
+        color: var(--dourado-claro);
+      }
+      .stat span {
+        font-size: 11.5px;
+        color: var(--creme-fraco);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .cta-banda {
+        text-align: center;
+        padding: 96px 28px;
+        position: relative;
+        overflow: hidden;
+        background:
+          radial-gradient(
+            ellipse at 50% 0%,
+            rgba(201, 162, 39, 0.16),
+            transparent 60%
+          ),
+          var(--preto);
+        border-bottom: 1px solid var(--linha);
+      }
+      .cta-banda h2 {
+        font-size: clamp(28px, 4vw, 40px);
+      }
+      .cta-banda p {
+        color: var(--creme-fraco);
+        max-width: 500px;
+        margin: 16px auto 34px;
+      }
+
+      .contato-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+        max-width: 1180px;
+        margin: 0 auto;
+      }
+      .contato-card {
+        background: linear-gradient(165deg, var(--carvao), var(--carvao-2));
+        border: 1px solid var(--linha);
+        border-radius: var(--radius);
+        padding: 32px 26px;
+        transition:
+          border-color 0.3s,
+          transform 0.3s var(--ease);
+      }
+      .contato-card:hover {
+        border-color: var(--dourado);
+        transform: translateY(-6px);
+      }
+      .contato-icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        border: 1px solid var(--linha);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--dourado);
+        margin-bottom: 18px;
+      }
+      .contato-icon .icon {
+        width: 20px;
+        height: 20px;
+      }
+      .contato-card h4 {
+        font-family: var(--serif);
+        font-size: 19px;
+        color: var(--dourado-claro);
+        margin-bottom: 8px;
+      }
+      .contato-card p,
+      .contato-card a {
+        color: var(--creme-fraco);
+        font-size: 14px;
+        display: block;
+      }
+      .contato-card a:hover {
+        color: var(--dourado-claro);
+      }
+
+      footer {
+        padding: 60px 28px 30px;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        gap: 50px;
+        max-width: 1180px;
+        margin: 0 auto;
+        border-bottom: 1px solid var(--linha);
+        padding-bottom: 46px;
+      }
+      .footer-col h4 {
+        font-size: 12px;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--dourado);
+        margin-bottom: 18px;
+      }
+      .footer-col a,
+      .footer-col p {
+        display: block;
+        color: var(--creme-fraco);
+        font-size: 14px;
+        margin-bottom: 10px;
+        transition: color 0.2s;
+      }
+      .footer-col a:hover {
+        color: var(--dourado-claro);
+      }
+      .footer-bottom {
+        max-width: 1180px;
+        margin: 22px auto 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 12px;
+        color: var(--creme-fraco);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .admin-link {
+        font-size: 11px;
+        opacity: 0.55;
+      }
+      .whats-float {
+        position: fixed;
+        bottom: 26px;
+        right: 26px;
+        z-index: 50;
+        width: 58px;
+        height: 58px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          var(--dourado-claro),
+          var(--dourado)
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 30px rgba(201, 162, 39, 0.35);
+        font-size: 26px;
+        transition: transform 0.3s var(--ease);
+        animation: floatBtn 3.4s ease-in-out infinite;
+      }
+      .whats-float:hover {
+        transform: scale(1.1);
+      }
+      @keyframes floatBtn {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-6px);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .nav-links,
+        .menu-desktop-only {
+          display: none;
+        }
+        .menu-toggle {
+          display: flex;
+        }
+        .cat-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .prod-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .sobre-grid {
+          grid-template-columns: 1fr;
+          gap: 40px;
+        }
+        .footer-grid {
+          grid-template-columns: 1fr;
+          gap: 30px;
+        }
+      }
+      @media (max-width: 560px) {
+        .prod-grid {
+          grid-template-columns: 1fr;
+        }
+        .cat-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+        .hero {
+          padding: 100px 20px 80px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="progress" id="progress"></div>
-    <div class="grain"></div>
+    <div class="glow-cursor" id="glowCursor"></div>
 
-    <div class="marquee">
-      <div class="marquee-track" id="marqueeTrack"></div>
-    </div>
+    <svg style="display: none" aria-hidden="true">
+      <symbol id="icon-ring" viewBox="0 0 24 24">
+        <path
+          d="M12 15a5 5 0 100-10 5 5 0 000 10z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M9.5 7.5L12 3l2.5 4.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-gem" viewBox="0 0 24 24">
+        <path
+          d="M4 8.5L8 4h8l4 4.5-9 11-9-11z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M4 8.5h16M9 4l1.5 4.5L12 19l1.5-10.5L15 4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-watch" viewBox="0 0 24 24">
+        <circle
+          cx="12"
+          cy="12"
+          r="6.2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 9v3.2l2.2 1.3M9.2 3h5.6M9.2 21h5.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-sparkle" viewBox="0 0 24 24">
+        <path
+          d="M12 3l1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M19 15l.7 2.1L22 18l-2.3.9L19 21l-.7-2.1L16 18l2.3-.9L19 15z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-diamond" viewBox="0 0 24 24">
+        <path
+          d="M4 8.5L8 4h8l4 4.5-9 11-9-11z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M4 8.5h16M9 4l1.5 4.5L12 19l1.5-10.5L15 4"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-chat" viewBox="0 0 24 24">
+        <path
+          d="M20 11.5a7.5 7.5 0 01-11.3 6.5L4 19l1.1-4.5A7.5 7.5 0 1120 11.5z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M8.5 11h.01M12 11h.01M15.5 11h.01"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-menu" viewBox="0 0 24 24">
+        <path
+          d="M4 7h16M4 12h16M4 17h16"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-close" viewBox="0 0 24 24">
+        <path
+          d="M5 5l14 14M19 5L5 19"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-pin" viewBox="0 0 24 24">
+        <path
+          d="M12 21s7-6.4 7-11.5a7 7 0 10-14 0C5 14.6 12 21 12 21z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="12"
+          cy="9.5"
+          r="2.3"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-phone" viewBox="0 0 24 24">
+        <path
+          d="M6.6 3.5l3 3-1.6 2.7a13 13 0 006.8 6.8l2.7-1.6 3 3-1.9 2a2.5 2.5 0 01-2.6.5A18.5 18.5 0 015.6 8.5a13.9 13.9 0 01-1-2.4 2.5 2.5 0 01.5-2.6l1.5-2z"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-clock" viewBox="0 0 24 24">
+        <circle
+          cx="12"
+          cy="12"
+          r="8.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <path
+          d="M12 7.5V12l3 2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+      </symbol>
+      <symbol id="icon-insta" viewBox="0 0 24 24">
+        <rect
+          x="4"
+          y="4"
+          width="16"
+          height="16"
+          rx="4.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="3.6"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle cx="16.6" cy="7.4" r="0.6" fill="currentColor" stroke="none" />
+      </symbol>
+    </svg>
 
-    <header>
-      <nav class="wrap">
-        <div class="brand">
-          <div class="brand-mark"><span>N</span></div>
-          <div class="brand-name">NarCle<small>Brilho tem marca</small></div>
-        </div>
-        <div class="nav-links">
+    <header class="site-header" id="siteHeader">
+      <div class="header-inner">
+        <a href="#" class="logo-mark">
+          <span class="logo-word"
+            >Nar<span class="ring-c"
+              >C<svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 11L12 4L17 11L12 15L7 11Z"
+                  fill="#c9a227"
+                  stroke="#e8cd7a"
+                  stroke-width="0.6"
+                /></svg></span
+            >le
+            <span class="logo-tagline">Brilho tem marca</span>
+          </span>
+        </a>
+        <nav class="nav-links menu-desktop-only">
+          <a href="#produtos">Produtos</a>
           <a href="#sobre">Sobre</a>
-          <a href="#categorias">Categorias</a>
-          <a href="#canais">Atacado &amp; Varejo</a>
-          <a href="#local">Loja</a>
+          <a href="#revendedor">Revendedor</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <div class="header-cta">
+          <a class="btn btn-outline menu-desktop-only" href="admin.html"
+            >Painel Admin</a
+          >
+          <a
+            class="btn btn-gold menu-desktop-only"
+            href="https://wa.me/5599000000000"
+            target="_blank"
+            rel="noopener"
+            >Falar no WhatsApp</a
+          >
+          <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu">
+            <svg class="icon"><use href="#icon-menu" /></svg>
+          </button>
         </div>
-        <a class="cta-btn solid desktop-only" href="#canais">Fazer contato</a>
-        <button class="hamburger" id="hamburger" aria-label="Abrir menu">
-          <span></span><span></span><span></span>
-        </button>
-      </nav>
+      </div>
     </header>
 
-    <div class="drawer-overlay" id="drawerOverlay"></div>
-    <div class="drawer" id="drawer">
-      <div class="drawer-top">
-        <div class="brand">
-          <div class="brand-mark"><span>N</span></div>
-        </div>
-        <button class="drawer-close" id="drawerClose" aria-label="Fechar menu">
-          ✕
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-top">
+        <span class="logo-word" style="font-size: 22px"
+          >Nar<span class="ring-c"
+            >C<svg viewBox="0 0 24 24" fill="none">
+              <path
+                d="M7 11L12 4L17 11L12 15L7 11Z"
+                fill="#c9a227"
+                stroke="#e8cd7a"
+                stroke-width="0.6"
+              /></svg></span
+          >le</span
+        >
+        <button
+          class="mobile-menu-close"
+          id="menuClose"
+          aria-label="Fechar menu"
+        >
+          <svg class="icon"><use href="#icon-close" /></svg>
         </button>
       </div>
-      <div class="drawer-links">
-        <a href="#sobre" class="drawer-link">Sobre</a>
-        <a href="#categorias" class="drawer-link">Categorias</a>
-        <a href="#canais" class="drawer-link">Atacado &amp; Varejo</a>
-        <a href="#local" class="drawer-link">Loja</a>
-      </div>
-      <div class="drawer-foot">
-        <a class="cta-btn solid" href="#canais">Fazer contato</a>
-        <small>Av. Central, 1933 · Centro · Caxias-MA</small>
+      <nav class="mobile-nav">
+        <a href="#produtos" class="js-mobile-link"
+          >Produtos <svg class="icon"><use href="#icon-gem" /></svg
+        ></a>
+        <a href="#sobre" class="js-mobile-link"
+          >Sobre <svg class="icon"><use href="#icon-sparkle" /></svg
+        ></a>
+        <a href="#revendedor" class="js-mobile-link"
+          >Revendedor <svg class="icon"><use href="#icon-ring" /></svg
+        ></a>
+        <a href="#contato" class="js-mobile-link"
+          >Contato <svg class="icon"><use href="#icon-pin" /></svg
+        ></a>
+      </nav>
+      <div class="mobile-menu-actions">
+        <a class="btn btn-outline" href="admin.html">Painel Admin</a>
+        <a
+          class="btn btn-gold"
+          href="https://wa.me/5599000000000"
+          target="_blank"
+          rel="noopener"
+          >Falar no WhatsApp</a
+        >
       </div>
     </div>
 
-    <section class="hero" id="heroSection">
-      <div class="wrap hero-inner">
-        <span class="eyebrow">Caxias · Maranhão · desde 1990</span>
-        <h1>Brilho <em>tem marca</em></h1>
-        <p class="lede">
-          36 anos entregando joias, semijoias e relógios com a confiança de quem
-          construiu uma marca de verdade — no atacado e no varejo.
+    <section class="hero">
+      <div class="hero-stars" id="heroStars"></div>
+      <div class="hero-logo">
+        Nar<span class="ring-c"
+          >C<svg viewBox="0 0 24 24" fill="none">
+            <path
+              d="M7 11L12 4L17 11L12 15L7 11Z"
+              fill="#c9a227"
+              stroke="#e8cd7a"
+              stroke-width="0.5"
+            /></svg></span
+        >le
+      </div>
+      <div class="hero-badge">✦ 36 anos de brilho e confiança ✦</div>
+
+      <div class="hero-tagline">Brilho tem marca</div>
+      <p class="hero-sub">
+        Semijoias, prata e relógios selecionados com curadoria de quem entende
+        de brilho há mais de três décadas. Atacado para revendedores, varejo
+        para quem quer se presentear.
+      </p>
+      <div class="hero-actions">
+        <a href="#colecao" class="btn btn-gold">Ver coleção</a>
+        <a href="#revendedor" class="btn btn-outline">Compre no atacado</a>
+      </div>
+      <div class="scroll-cue"><span></span></div>
+    </section>
+
+    <section class="section" id="colecao">
+      <div class="section-head reveal">
+        <span class="eyebrow">Categorias</span>
+        <h2 class="section-title">O que você procura</h2>
+        <p class="section-desc">
+          Do clássico ao contemporâneo — cada peça escolhida para durar mais que
+          uma tendência.
         </p>
-
-        <div class="mode-toggle" id="modeToggle">
-          <button class="mode-btn active" data-mode="varejo">
-            Sou cliente
-          </button>
-          <button class="mode-btn" data-mode="atacado">Sou lojista</button>
+      </div>
+      <div class="cat-grid reveal-stagger">
+        <div class="cat-card">
+          <div class="cat-icon">
+            <svg
+              class="icon"
+              style="width: 30px; height: 30px; color: var(--dourado)"
+            >
+              <use href="#icon-ring" />
+            </svg>
+          </div>
+          <div class="cat-name">Semijoias</div>
+          <div class="cat-count">Anéis, brincos, colares</div>
         </div>
-        <div class="mode-panel" id="modePanel"></div>
+        <div class="cat-card">
+          <div class="cat-icon">
+            <svg
+              class="icon"
+              style="width: 30px; height: 30px; color: var(--dourado)"
+            >
+              <use href="#icon-gem" />
+            </svg>
+          </div>
+          <div class="cat-name">Prata</div>
+          <div class="cat-count">Peças em prata 925</div>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">
+            <svg
+              class="icon"
+              style="width: 30px; height: 30px; color: var(--dourado)"
+            >
+              <use href="#icon-watch" />
+            </svg>
+          </div>
+          <div class="cat-name">Relógios</div>
+          <div class="cat-count">Linha completa</div>
+        </div>
+        <div class="cat-card">
+          <div class="cat-icon">
+            <svg
+              class="icon"
+              style="width: 30px; height: 30px; color: var(--dourado)"
+            >
+              <use href="#icon-sparkle" />
+            </svg>
+          </div>
+          <div class="cat-name">Eventos</div>
+          <div class="cat-count">Para ocasiões especiais</div>
+        </div>
+      </div>
+    </section>
 
-        <div class="hero-ctas">
+    <section class="section" id="produtos" style="padding-top: 0">
+      <div class="section-head reveal">
+        <span class="eyebrow">Vitrine</span>
+        <h2 class="section-title">Peças em destaque</h2>
+      </div>
+      <div class="filters reveal" id="filterBar">
+        <button class="filter-chip active" data-filter="todos">Todos</button>
+        <button class="filter-chip" data-filter="Semijoias">Semijoias</button>
+        <button class="filter-chip" data-filter="Prata">Prata</button>
+        <button class="filter-chip" data-filter="Relógios">Relógios</button>
+        <button class="filter-chip" data-filter="Eventos">Eventos</button>
+      </div>
+      <div class="prod-grid reveal-stagger" id="prodGrid"></div>
+    </section>
+
+    <section class="sobre" id="sobre">
+      <div class="section">
+        <div class="sobre-grid">
+          <div class="reveal">
+            <div class="sobre-num" id="numAnos">0</div>
+            <div class="sobre-num-label">Anos de história</div>
+          </div>
+          <div class="sobre-text reveal">
+            <span class="eyebrow">Quem somos</span>
+            <h3 class="section-title">Feita de respeito e confiança</h3>
+            <p>
+              A NarCle nasceu do compromisso de oferecer brilho de qualidade a
+              um preço justo — para quem compra uma peça e para quem monta o
+              próprio negócio revendendo com a gente. Ao longo de mais de três
+              décadas, viramos referência em semijoias, prata e relógios na
+              região.
+            </p>
+            <p>
+              Trabalhamos lado a lado com centenas de revendedores, porque
+              acreditamos que o nosso crescimento é o crescimento de quem confia
+              na marca.
+            </p>
+            <div class="sobre-stats">
+              <div class="stat">
+                <b>2</b><span>Lojas: atacado e varejo</span>
+              </div>
+              <div class="stat">
+                <b>300+</b><span>Revendedores parceiros</span>
+              </div>
+              <div class="stat"><b>36</b><span>Anos de mercado</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banda reveal" id="revendedor">
+      <span class="eyebrow" style="justify-content: center"
+        >Dia do Revendedor</span
+      >
+      <h2>Seja parte do nosso brilho</h2>
+      <p>
+        Compre no atacado e monte sua própria renda revendendo semijoias, prata
+        e relógios NarCle. Suporte, catálogo atualizado e preço especial pra
+        quem revende.
+      </p>
+      <a
+        class="btn btn-gold"
+        href="https://wa.me/5599000000000"
+        target="_blank"
+        rel="noopener"
+        >Quero ser revendedor</a
+      >
+    </section>
+
+    <section class="section" id="contato">
+      <div class="section-head reveal">
+        <span class="eyebrow">Fale com a gente</span>
+        <h2 class="section-title">Contato</h2>
+        <p class="section-desc">
+          Atendimento pelo WhatsApp, na loja física ou pelas redes sociais.
+        </p>
+      </div>
+      <div class="contato-grid reveal-stagger">
+        <div class="contato-card">
+          <div class="contato-icon">
+            <svg class="icon"><use href="#icon-pin" /></svg>
+          </div>
+          <h4>Endereço</h4>
+          <p>Caxias, Maranhão</p>
+          <p>Loja física — atacado e varejo</p>
+        </div>
+        <div class="contato-card">
+          <div class="contato-icon">
+            <svg class="icon"><use href="#icon-phone" /></svg>
+          </div>
+          <h4>Atendimento</h4>
+          <a href="https://wa.me/5599000000000" target="_blank" rel="noopener"
+            >WhatsApp</a
+          >
           <a
-            class="cta-btn solid"
-            id="modeCta"
             href="https://instagram.com/narclejoiasvarejo"
             target="_blank"
             rel="noopener"
-            >Comprar no varejo</a
+            >@narclejoiasvarejo</a
           >
-          <a class="cta-btn" href="#categorias">Ver categorias</a>
-        </div>
-        <div class="hero-stats">
-          <div>
-            <strong class="count" data-target="36">0</strong
-            ><span>Anos de história</span>
-          </div>
-          <div><strong>2</strong><span>Canais: atacado e varejo</span></div>
-          <div>
-            <strong class="count" data-target="9987" data-suffix="+">0</strong
-            ><span>Seguidores</span>
-          </div>
-        </div>
-      </div>
-      <div class="wave">
-        <svg viewBox="0 0 1200 64" preserveAspectRatio="none">
-          <path
-            d="M0,36 C300,80 900,0 1200,36 L1200,64 L0,64 Z"
-            fill="#17161A"
-          ></path>
-        </svg>
-      </div>
-    </section>
-
-    <section class="about" id="sobre">
-      <div class="wrap about-grid">
-        <div class="reveal about-text">
-          <span class="eyebrow" style="display: block; margin-bottom: 1rem"
-            >Nossa história</span
+          <a
+            href="https://instagram.com/narclejoiasatacado"
+            target="_blank"
+            rel="noopener"
+            >@narclejoiasatacado</a
           >
-          <h2
-            style="
-              font-size: clamp(1.8rem, 3.6vw, 2.4rem);
-              color: var(--ivory);
-              margin-bottom: 1.3rem;
-            "
-          >
-            36 anos de parceria e confiança
-          </h2>
-          <p>
-            A <strong>NarCle Joias</strong> nasceu em Caxias-MA e construiu, ao
-            longo de 36 anos, uma marca reconhecida em joias, semijoias e
-            relógios — com loja própria na Av. Central, no Centro da cidade.
-          </p>
-          <p>
-            Hoje a NarCle atende dois públicos: quem compra pra usar, e quem
-            revende. Nossa filosofia de trabalho é pautada no
-            <strong>respeito e na confiança</strong>, em cada relação — seja com
-            o cliente final, seja com o lojista parceiro.
-          </p>
-          <div class="badge-row">
-            <span class="badge">36 anos de mercado</span>
-            <span class="badge">Loja física no Centro</span>
-            <span class="badge">Atacado e varejo</span>
-            <span class="badge">Programa de revendedores</span>
-          </div>
         </div>
-        <div class="reveal about-card">
-          <h3>
-            "Nossa filosofia de trabalho é pautada no respeito e na confiança."
-          </h3>
-          <p>
-            É essa relação de proximidade — com quem compra e com quem revende —
-            que sustenta a marca há mais de três décadas em Caxias.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section class="categories" id="categorias">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Categorias</span>
-          <h2>O que você encontra na NarCle</h2>
-          <p>
-            Linha completa pensada tanto pra quem compra pra usar quanto pra
-            quem revende.
-          </p>
-        </div>
-        <div class="cat-grid" id="catGrid">
-          <div class="cat-card">
-            <div class="cat-icon">✦</div>
-            <h3>Semijoias</h3>
+        <div class="contato-card">
+          <div class="contato-icon">
+            <svg class="icon"><use href="#icon-clock" /></svg>
           </div>
-          <div class="cat-card">
-            <div class="cat-icon">◐</div>
-            <h3>Prata</h3>
-          </div>
-          <div class="cat-card">
-            <div class="cat-icon">◈</div>
-            <h3>Relógios</h3>
-          </div>
-          <div class="cat-card">
-            <div class="cat-icon">✧</div>
-            <h3>Eventos</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="channels" id="canais">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Dois canais, uma marca</span>
-          <h2>Atacado &amp; Varejo</h2>
-          <p>
-            Cada perfil tem seu próprio canal de atendimento — fale direto com
-            quem cuida do seu tipo de compra.
-          </p>
-        </div>
-        <div class="ch-grid">
-          <div class="ch-card atacado reveal">
-            <span class="ch-tag">Atacado</span>
-            <h3>Pra quem revende</h3>
-            <p>
-              Condições especiais pra lojistas, com o suporte de quem entende do
-              programa de revendedores NarCle.
-            </p>
-            <ul>
-              <li>Preços diferenciados por volume</li>
-              <li>Suporte dedicado a revendedores</li>
-              <li>Novidades em primeira mão</li>
-            </ul>
-            <a
-              class="cta-btn solid"
-              href="https://instagram.com/narclejoiasatacado"
-              target="_blank"
-              rel="noopener"
-              >Falar com o Atacado</a
-            >
-          </div>
-          <div class="ch-card varejo reveal">
-            <span class="ch-tag">Varejo</span>
-            <h3>Pra quem compra pra usar</h3>
-            <p>
-              Peças escolhidas com cuidado, direto da loja física ou pelo canal
-              digital de varejo.
-            </p>
-            <ul>
-              <li>Compra unitária, sem mínimo</li>
-              <li>Atendimento pessoal</li>
-              <li>Retirada na loja física</li>
-            </ul>
-            <a
-              class="cta-btn"
-              href="https://instagram.com/narclejoiasvarejo"
-              target="_blank"
-              rel="noopener"
-              >Falar com o Varejo</a
-            >
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="location" id="local">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Nossa loja</span>
-          <h2>Av. Central, Centro — Caxias-MA</h2>
-        </div>
-        <div class="loc-single reveal">
-          <span class="loc-tag">Loja física</span>
-          <h3>NarCle Joias</h3>
-          <p class="addr">
-            Av. Central, 1933 — Centro, Caxias, MA · CEP 65600-160
-          </p>
-          <a class="wa" href="tel:+559935215262">(99) 3521-5262</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="social">
-      <div class="wrap">
-        <div class="ig-card reveal">
-          <span class="eyebrow">@narclejoias</span>
-          <h2
-            style="font-size: 1.6rem; color: var(--ivory); margin-top: 0.9rem"
-          >
-            Segue a gente no Instagram
-          </h2>
-          <div class="ig-stats">
-            <div>
-              <strong class="count" data-target="2894">0</strong
-              ><span>Posts</span>
-            </div>
-            <div>
-              <strong class="count" data-target="9987" data-suffix="+">0</strong
-              ><span>Seguidores</span>
-            </div>
-            <div><strong>36</strong><span>Anos de marca</span></div>
-          </div>
-          <div class="ig-links">
-            <a
-              class="cta-btn"
-              href="https://instagram.com/narclejoiasatacado"
-              target="_blank"
-              rel="noopener"
-              >Atacado</a
-            >
-            <a
-              class="cta-btn"
-              href="https://instagram.com/narclejoiasvarejo"
-              target="_blank"
-              rel="noopener"
-              >Varejo</a
-            >
-          </div>
+          <h4>Horário</h4>
+          <p>Segunda a sábado</p>
+          <p>8h às 18h</p>
         </div>
       </div>
     </section>
 
     <footer>
-      <div class="wrap">
-        <div class="foot-grid">
-          <div class="brand">
-            <div class="brand-mark"><span>N</span></div>
-            <div class="brand-name">NarCle<small>Brilho tem marca</small></div>
-          </div>
-          <div class="foot-links">
-            <div>
-              <h5>Site</h5>
-              <a href="#sobre">Sobre</a><a href="#categorias">Categorias</a
-              ><a href="#canais">Atacado &amp; Varejo</a
-              ><a href="#local">Loja</a>
-            </div>
-            <div>
-              <h5>Fale com a gente</h5>
-              <a
-                href="https://instagram.com/narclejoiasatacado"
-                target="_blank"
-                rel="noopener"
-                >Instagram Atacado</a
-              ><a
-                href="https://instagram.com/narclejoiasvarejo"
-                target="_blank"
-                rel="noopener"
-                >Instagram Varejo</a
-              ><a href="tel:+559935215262">(99) 3521-5262</a>
-            </div>
-          </div>
+      <div class="footer-grid">
+        <div class="footer-col">
+          <span class="logo-word" style="font-size: 22px"
+            >Nar<span class="ring-c"
+              >C<svg viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M7 11L12 4L17 11L12 15L7 11Z"
+                  fill="#c9a227"
+                  stroke="#e8cd7a"
+                  stroke-width="0.6"
+                /></svg></span
+            >le</span
+          >
+          <p style="margin-top: 14px; max-width: 280px">
+            Brilho tem marca. Semijoias, prata e relógios para o varejo e o
+            atacado.
+          </p>
         </div>
-        <div class="foot-bottom">
-          NarCle Joias — Av. Central, 1933, Centro, Caxias/MA. 36 anos de
-          história.
+        <div class="footer-col">
+          <h4>Navegue</h4>
+          <a href="#produtos">Produtos</a>
+          <a href="#sobre">Sobre a NarCle</a>
+          <a href="#revendedor">Seja revendedor</a>
         </div>
+        <div class="footer-col">
+          <h4>Contato</h4>
+          <a href="https://wa.me/5599000000000" target="_blank" rel="noopener"
+            >WhatsApp</a
+          >
+          <a
+            href="https://instagram.com/narclejoiasvarejo"
+            target="_blank"
+            rel="noopener"
+            >@narclejoiasvarejo</a
+          >
+          <a
+            href="https://instagram.com/narclejoiasatacado"
+            target="_blank"
+            rel="noopener"
+            >@narclejoiasatacado</a
+          >
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 NarCle Joias — todos os direitos reservados</span>
+        <a class="admin-link" href="admin.html">Acesso administrativo</a>
+        <span
+          >Desenvolvido por
+          <a href="https:cauancarvalho.netlify.app">Cauan Carvalho</a></span
+        >
       </div>
     </footer>
 
+    <a
+      class="whats-float"
+      href="https://wa.me/5599000000000"
+      target="_blank"
+      rel="noopener"
+      aria-label="Falar no WhatsApp"
+      ><svg class="icon" style="width: 26px; height: 26px">
+        <use href="#icon-chat" /></svg
+    ></a>
+
     <script>
-      var progress = document.getElementById("progress");
+      const STORAGE_KEY = "narcle_products";
+
+      function seedIfEmpty() {
+        if (localStorage.getItem(STORAGE_KEY)) return;
+        const demo = [
+          {
+            id: crypto.randomUUID(),
+            nome: "Colar Ponto de Luz",
+            categoria: "Semijoias",
+            preco: 189.9,
+            precoPromo: null,
+            promo: false,
+            foto: "",
+            ativo: true,
+          },
+          {
+            id: crypto.randomUUID(),
+            nome: "Anel Solitário Folheado",
+            categoria: "Semijoias",
+            preco: 129.9,
+            precoPromo: 99.9,
+            promo: true,
+            foto: "",
+            ativo: true,
+          },
+          {
+            id: crypto.randomUUID(),
+            nome: "Brinco Argola Prata 925",
+            categoria: "Prata",
+            preco: 149.9,
+            precoPromo: null,
+            promo: false,
+            foto: "",
+            ativo: true,
+          },
+          {
+            id: crypto.randomUUID(),
+            nome: "Relógio Clássico Dourado",
+            categoria: "Relógios",
+            preco: 349.9,
+            precoPromo: null,
+            promo: false,
+            foto: "",
+            ativo: true,
+          },
+          {
+            id: crypto.randomUUID(),
+            nome: "Conjunto Noiva Cristal",
+            categoria: "Eventos",
+            preco: 259.9,
+            precoPromo: 219.9,
+            promo: true,
+            foto: "",
+            ativo: true,
+          },
+          {
+            id: crypto.randomUUID(),
+            nome: "Pulseira Riviera",
+            categoria: "Semijoias",
+            preco: 169.9,
+            precoPromo: null,
+            promo: false,
+            foto: "",
+            ativo: true,
+          },
+        ];
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(demo));
+      }
+      function getProducts() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+        } catch (e) {
+          return [];
+        }
+      }
+      function money(v) {
+        return v.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+      }
+
+      function renderProducts(filter = "todos") {
+        const grid = document.getElementById("prodGrid");
+        if (!grid) return;
+        const produtos = getProducts().filter((p) => p.ativo !== false);
+        const lista =
+          filter === "todos"
+            ? produtos
+            : produtos.filter((p) => p.categoria === filter);
+
+        if (lista.length === 0) {
+          grid.innerHTML = `<div class="empty-state">Nenhuma peça cadastrada nessa categoria ainda.</div>`;
+          return;
+        }
+        grid.innerHTML = lista
+          .map(
+            (p) => `
+    <div class="prod-card">
+      <div class="prod-photo">
+        ${p.foto ? `<img src="${p.foto}" alt="${p.nome}">` : `<svg class="icon ph-empty" style="width:34px;height:34px;color:var(--dourado)"><use href="#icon-diamond"/></svg>`}
+        ${p.promo ? `<span class="prod-badge">Promoção</span>` : ""}
+      </div>
+      <div class="prod-body">
+        <div class="prod-cat">${p.categoria}</div>
+        <div class="prod-name">${p.nome}</div>
+        <div class="prod-price-row">
+          <span class="prod-price">${money(p.promo && p.precoPromo ? p.precoPromo : p.preco)}</span>
+          ${p.promo && p.precoPromo ? `<span class="prod-price-old">${money(p.preco)}</span>` : ""}
+        </div>
+        <button class="prod-cta" onclick="window.open('https://wa.me/5599000000000?text=' + encodeURIComponent('Olá! Tenho interesse na peça: ${p.nome}'), '_blank')">Consultar no WhatsApp</button>
+      </div>
+  `,
+          )
+          .join("");
+        document
+          .querySelectorAll(".prod-grid.reveal-stagger")
+          .forEach((el) => observer.observe(el));
+      }
+
+      const menuToggle = document.getElementById("menuToggle");
+      const menuClose = document.getElementById("menuClose");
+      const mobileMenu = document.getElementById("mobileMenu");
+      function abrirMenu() {
+        mobileMenu.classList.add("open");
+        document.body.style.overflow = "hidden";
+      }
+      function fecharMenu() {
+        mobileMenu.classList.remove("open");
+        document.body.style.overflow = "";
+      }
+      menuToggle.addEventListener("click", abrirMenu);
+      menuClose.addEventListener("click", fecharMenu);
+      document
+        .querySelectorAll(".js-mobile-link")
+        .forEach((a) => a.addEventListener("click", fecharMenu));
+
+      const header = document.getElementById("siteHeader");
       window.addEventListener(
         "scroll",
-        function () {
-          var h = document.documentElement;
-          progress.style.width =
-            (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100 + "%";
+        () => {
+          header.classList.toggle("scrolled", window.scrollY > 40);
         },
         { passive: true },
       );
 
-      var marqueeItems = [
-        "36 anos de história",
-        "Semijoias",
-        "Prata",
-        "Relógios",
-        "Atacado e Varejo",
-        "Av. Central, Centro",
-      ];
-      var mHTML = "";
-      marqueeItems.concat(marqueeItems).forEach(function (t) {
-        mHTML += "<span>" + t + "</span>";
-      });
-      document.getElementById("marqueeTrack").innerHTML = mHTML;
-
-      var hamburger = document.getElementById("hamburger");
-      var drawer = document.getElementById("drawer");
-      var drawerOverlay = document.getElementById("drawerOverlay");
-      var drawerClose = document.getElementById("drawerClose");
-      function openDrawer() {
-        drawer.classList.add("open");
-        drawerOverlay.classList.add("open");
-        hamburger.classList.add("open");
-        document.body.style.overflow = "hidden";
+      const glow = document.getElementById("glowCursor");
+      if (window.matchMedia("(hover: hover)").matches) {
+        window.addEventListener("mousemove", (e) => {
+          glow.style.opacity = "1";
+          glow.style.left = e.clientX + "px";
+          glow.style.top = e.clientY + "px";
+        });
       }
-      function closeDrawer() {
-        drawer.classList.remove("open");
-        drawerOverlay.classList.remove("open");
-        hamburger.classList.remove("open");
-        document.body.style.overflow = "";
-      }
-      hamburger.addEventListener("click", function () {
-        drawer.classList.contains("open") ? closeDrawer() : openDrawer();
-      });
-      drawerClose.addEventListener("click", closeDrawer);
-      drawerOverlay.addEventListener("click", closeDrawer);
-      document.querySelectorAll(".drawer-link").forEach(function (a) {
-        a.addEventListener("click", closeDrawer);
-      });
 
-      var io = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add("in");
-              io.unobserve(e.target);
+      const starsWrap = document.getElementById("heroStars");
+      for (let i = 0; i < 26; i++) {
+        const s = document.createElement("div");
+        s.className = "star";
+        const size = Math.random() * 2.4 + 1;
+        s.style.width = size + "px";
+        s.style.height = size + "px";
+        s.style.left = Math.random() * 100 + "%";
+        s.style.top = Math.random() * 100 + "%";
+        s.style.animationDelay = Math.random() * 3.5 + "s";
+        starsWrap.appendChild(s);
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("in");
+              observer.unobserve(entry.target);
             }
           });
         },
         { threshold: 0.15 },
       );
-      document.querySelectorAll(".reveal").forEach(function (el) {
-        io.observe(el);
-      });
+      document
+        .querySelectorAll(".reveal, .reveal-stagger")
+        .forEach((el) => observer.observe(el));
 
-      var catCards = document.querySelectorAll("#catGrid .cat-card");
-      catCards.forEach(function (card, i) {
-        card.classList.add("reveal");
-        card.style.transitionDelay = i * 90 + "ms";
-        io.observe(card);
-      });
-
-      function animateCount(el) {
-        var target = parseInt(el.dataset.target, 10);
-        var suffix = el.dataset.suffix || "";
-        var dur = 1500,
-          start = performance.now();
-        function tick(now) {
-          var p = Math.min((now - start) / dur, 1);
-          var eased = 1 - Math.pow(1 - p, 3);
-          var val = Math.floor(eased * target);
-          el.textContent =
-            (target >= 1000
-              ? (val / 1000).toFixed(1).replace(".0", "") + " mil"
-              : val) + (p >= 1 ? suffix : "");
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-      }
-      var countIo = new IntersectionObserver(
-        function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              animateCount(e.target);
-              countIo.unobserve(e.target);
+      const numEl = document.getElementById("numAnos");
+      let animado = false;
+      const numObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !animado) {
+              animado = true;
+              let atual = 0;
+              const alvo = 36;
+              const passo = setInterval(() => {
+                atual++;
+                numEl.textContent = atual;
+                if (atual >= alvo) clearInterval(passo);
+              }, 28);
+              numObserver.disconnect();
             }
           });
         },
-        { threshold: 0.6 },
+        { threshold: 0.4 },
       );
-      document.querySelectorAll(".count").forEach(function (el) {
-        countIo.observe(el);
-      });
+      numObserver.observe(numEl);
 
-      /* sparkle particles in hero */
-      var heroSection = document.getElementById("heroSection");
-      for (var i = 0; i < 18; i++) {
-        var s = document.createElement("div");
-        s.className = "sparkle";
-        var size = 2 + Math.random() * 3;
-        s.style.width = size + "px";
-        s.style.height = size + "px";
-        s.style.left = Math.random() * 100 + "%";
-        s.style.top = Math.random() * 70 + "%";
-        s.style.animationDelay = Math.random() * 3.4 + "s";
-        heroSection.appendChild(s);
-      }
-
-      /* tilt + magnetic (desktop only) */
-      var hasHover = window.matchMedia("(hover: hover)").matches;
-      if (hasHover) {
-        document
-          .querySelectorAll(".cat-card, .ch-card, .loc-single")
-          .forEach(function (card) {
-            card.addEventListener("mousemove", function (e) {
-              var r = card.getBoundingClientRect();
-              var x = (e.clientX - r.left) / r.width - 0.5;
-              var y = (e.clientY - r.top) / r.height - 0.5;
-              card.style.transform =
-                "perspective(700px) rotateX(" +
-                (-y * 5).toFixed(2) +
-                "deg) rotateY(" +
-                (x * 5).toFixed(2) +
-                "deg) translateY(-4px)";
-            });
-            card.addEventListener("mouseleave", function () {
-              card.style.transform = "";
-            });
+      document.addEventListener("DOMContentLoaded", () => {
+        seedIfEmpty();
+        renderProducts();
+        const chips = document.querySelectorAll(".filter-chip");
+        chips.forEach((chip) => {
+          chip.addEventListener("click", () => {
+            chips.forEach((c) => c.classList.remove("active"));
+            chip.classList.add("active");
+            renderProducts(chip.dataset.filter);
           });
-        document.querySelectorAll(".cta-btn").forEach(function (btn) {
-          btn.addEventListener("mousemove", function (e) {
-            var r = btn.getBoundingClientRect();
-            var x = (e.clientX - r.left - r.width / 2) * 0.22;
-            var y = (e.clientY - r.top - r.height / 2) * 0.45;
-            btn.style.transform = "translate(" + x + "px, " + y + "px)";
-          });
-          btn.addEventListener("mouseleave", function () {
-            btn.style.transform = "";
-          });
-        });
-      }
-
-      /* ---------- Atacado / Varejo mode toggle ---------- */
-      var modeContent = {
-        varejo: {
-          text: "Você está comprando <strong>pra usar</strong>: peças escolhidas com cuidado, sem quantidade mínima, com atendimento pessoal na loja ou pelo canal de varejo.",
-          cta: "Comprar no varejo",
-          link: "https://instagram.com/narclejoiasvarejo",
-        },
-        atacado: {
-          text: "Você é <strong>lojista</strong>: condições especiais por volume, suporte dedicado e novidades em primeira mão pelo canal de atacado da NarCle.",
-          cta: "Comprar no atacado",
-          link: "https://instagram.com/narclejoiasatacado",
-        },
-      };
-      var modeButtons = document.querySelectorAll(".mode-btn");
-      var modePanel = document.getElementById("modePanel");
-      var modeCta = document.getElementById("modeCta");
-
-      function setMode(mode) {
-        modeButtons.forEach(function (btn) {
-          btn.classList.toggle("active", btn.dataset.mode === mode);
-        });
-        modePanel.innerHTML = "<p>" + modeContent[mode].text + "</p>";
-        modeCta.textContent = modeContent[mode].cta;
-        modeCta.href = modeContent[mode].link;
-      }
-      modeButtons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          setMode(btn.dataset.mode);
         });
       });
-      setMode("varejo");
     </script>
   </body>
 </html>
