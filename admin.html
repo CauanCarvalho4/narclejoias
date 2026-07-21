@@ -58,7 +58,6 @@
     main{padding:32px 36px;max-width:900px;}
   }
 
-  /* visão geral */
   .stat-cards{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px;}
   .stat-cards .card{background:var(--bg-card);border:1px solid var(--line);padding:18px;}
   .stat-cards .card b{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--gold-light);display:block;}
@@ -94,7 +93,7 @@
 <body>
 
 <div id="loadError" style="display:none;position:fixed;top:0;left:0;right:0;z-index:100;background:#3a1418;color:#f4ece0;padding:14px 18px;font-size:0.85rem;text-align:center;border-bottom:1px solid #a8384c;">
-  Não foi possível carregar o sistema (Firebase). Se você estiver vendo isso dentro da prévia do chat, abra o arquivo direto no navegador ou publique no Netlify pra testar de verdade. Se já estiver fora da prévia, verifique sua internet e recarregue a página.
+  Não foi possível carregar o sistema (Firebase). Verifique sua internet, se o firebase-config.js subiu junto no deploy, e recarregue a página.
 </div>
 
 <div id="loginScreen">
@@ -127,7 +126,6 @@
     <div class="side">
       <button class="tab-btn active" data-tab="visao">Visão geral</button>
       <button class="tab-btn" data-tab="produtos">Produtos</button>
-      <button class="tab-btn" data-tab="promo">Promo do dia</button>
       <button class="tab-btn" data-tab="config">Configurações</button>
       <button class="tab-btn" data-tab="depoimentos">Depoimentos</button>
       <button class="tab-btn" data-tab="clientes">Clientes</button>
@@ -140,7 +138,7 @@
         <p class="hint">Resumo rápido do que está cadastrado no site agora.</p>
         <div class="stat-cards">
           <div class="card"><b id="statProdutos">0</b><span>Produtos</span></div>
-          <div class="card"><b id="statDestaques">0</b><span>Em destaque</span></div>
+          <div class="card"><b id="statCategorias">0</b><span>Categorias em uso</span></div>
           <div class="card"><b id="statDepoimentos">0</b><span>Depoimentos</span></div>
           <div class="card"><b id="statClientes">0</b><span>Clientes coletados</span></div>
         </div>
@@ -150,7 +148,7 @@
       <!-- PRODUTOS -->
       <section class="panel" id="panel-produtos">
         <h2>Produtos</h2>
-        <p class="hint">O que estiver marcado como "Destaque" aparece na seção Destaques do site.</p>
+        <p class="hint">Aparece direto no catálogo do site, na seção "Produtos", com os filtros de categoria e canal.</p>
         <form class="entry" id="prodForm">
           <input type="hidden" id="prodId">
           <div class="photo-row">
@@ -164,7 +162,7 @@
             <div><label>Nome</label><input type="text" id="prodNome" required></div>
             <div><label>Preço (R$)</label><input type="text" id="prodPreco" placeholder="149,90"></div>
           </div>
-          <div class="grid3">
+          <div class="grid2">
             <div>
               <label>Categoria</label>
               <select id="prodCategoria">
@@ -182,13 +180,6 @@
                 <option value="varejo">Só varejo</option>
               </select>
             </div>
-            <div>
-              <label>Destaque na home?</label>
-              <select id="prodDestaque">
-                <option value="true">Sim</option>
-                <option value="false" selected>Não</option>
-              </select>
-            </div>
           </div>
           <input type="hidden" id="prodImagem">
           <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Salvar produto</button>
@@ -197,49 +188,16 @@
         </form>
         <div class="table-scroll">
           <table>
-            <thead><tr><th></th><th>Nome</th><th>Preço</th><th>Categoria</th><th>Canal</th><th>Destaque</th><th></th></tr></thead>
+            <thead><tr><th></th><th>Nome</th><th>Preço</th><th>Categoria</th><th>Canal</th><th></th></tr></thead>
             <tbody id="prodTable"></tbody>
           </table>
         </div>
       </section>
 
-      <!-- PROMO DO DIA -->
-      <section class="panel" id="panel-promo">
-        <h2>Promo do dia</h2>
-        <p class="hint">Aparece em destaque no topo do site enquanto estiver marcada como ativa. Desative quando a promoção acabar.</p>
-        <form class="entry" id="promoForm">
-          <div class="photo-row">
-            <img class="photo-preview" id="promoPreview" alt="">
-            <div>
-              <input type="file" id="promoFoto" accept="image/*" style="margin:0;">
-              <p class="upload-status" id="promoUploadStatus"></p>
-            </div>
-          </div>
-          <div class="grid2">
-            <div><label>Título da promoção</label><input type="text" id="promoTitulo" placeholder="Ex: Semana da Revendedora"></div>
-            <div><label>Desconto / condição</label><input type="text" id="promoDesconto" placeholder="Ex: 20% off ou 3x sem juros"></div>
-          </div>
-          <div class="full"><label>Descrição curta</label><textarea id="promoDescricao" rows="2" placeholder="Detalhe rápido pra aparecer embaixo do título"></textarea></div>
-          <div class="grid2">
-            <div><label>Válida até</label><input type="date" id="promoValidade"></div>
-            <div>
-              <label>Status</label>
-              <select id="promoAtiva">
-                <option value="true">Ativa (aparece no site)</option>
-                <option value="false" selected>Inativa (escondida)</option>
-              </select>
-            </div>
-          </div>
-          <input type="hidden" id="promoImagem">
-          <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Salvar promo do dia</button>
-          <p class="status-msg" id="promoStatus"></p>
-        </form>
-      </section>
-
       <!-- CONFIGURAÇÕES -->
       <section class="panel" id="panel-config">
         <h2>Configurações do site</h2>
-        <p class="hint">Alimenta o cabeçalho, botões de WhatsApp e Instagram do site.</p>
+        <p class="hint">Alimenta o cabeçalho, WhatsApp, Instagram e a seção Localização do site.</p>
         <form class="entry" id="configForm">
           <div class="grid2">
             <div><label>Anos de história</label><input type="number" id="cfgAnos"></div>
@@ -250,6 +208,11 @@
           <div class="grid2">
             <div><label>Instagram atacado (sem @)</label><input type="text" id="cfgInstaAtacado"></div>
             <div><label>Instagram varejo (sem @)</label><input type="text" id="cfgInstaVarejo"></div>
+          </div>
+          <div class="full"><label>Endereço da loja</label><input type="text" id="cfgAddress" placeholder="Rua Exemplo, nº 000 – Centro, Caxias – MA"></div>
+          <div class="grid2">
+            <div><label>Horário de funcionamento</label><input type="text" id="cfgHours" placeholder="Segunda a sábado, 8h às 18h"></div>
+            <div><label>Endereço p/ busca no mapa</label><input type="text" id="cfgMapsQuery" placeholder="Mesmo endereço, sem acento se preferir"></div>
           </div>
           <button class="btn btn-gold" type="submit" style="width:auto;padding:11px 24px;">Salvar configurações</button>
           <p class="status-msg" id="cfgStatus"></p>
@@ -277,7 +240,7 @@
       <!-- CLIENTES / LEADS -->
       <section class="panel" id="panel-clientes">
         <h2>Clientes</h2>
-        <p class="hint">Contatos coletados pelo formulário de descontos do site — use pra campanhas de aniversário e datas comemorativas.</p>
+        <p class="hint">Contatos coletados pelo formulário "Descontos" do site — use pra campanhas de aniversário e datas comemorativas.</p>
         <div class="toolbar">
           <input type="text" id="leadSearch" placeholder="Buscar por nome..." style="max-width:240px;margin:0;">
           <div style="display:flex;gap:8px;">
@@ -298,8 +261,6 @@
 </div>
 
 <script>
-  // Se o módulo do Firebase (mais abaixo) não conseguir carregar, isso
-  // mostra um aviso claro em vez de deixar a tela em branco sem explicação.
   window.systemReady = false;
   setTimeout(() => {
     if(!window.systemReady) document.getElementById('loadError').style.display = 'block';
@@ -326,6 +287,9 @@
   const db = getFirestore(app);
   const storage = getStorage(app);
 
+  window.systemReady = true;
+  document.getElementById('loadError').style.display = 'none';
+
   const loginScreen = document.getElementById('loginScreen');
   const dashboard = document.getElementById('dashboard');
 
@@ -340,9 +304,6 @@
   });
 
   document.getElementById('logoutBtn').addEventListener('click', () => signOut(auth));
-
-  window.systemReady = true;
-  document.getElementById('loadError').style.display = 'none';
 
   onAuthStateChanged(auth, (user) => {
     if(user){
@@ -377,12 +338,11 @@
     loadConfig();
     listenTestimonials();
     listenLeads();
-    loadPromo();
   }
 
   function refreshOverview(){
     document.getElementById('statProdutos').textContent = latestProducts.length;
-    document.getElementById('statDestaques').textContent = latestProducts.filter(p => p.featured).length;
+    document.getElementById('statCategorias').textContent = new Set(latestProducts.map(p => p.category)).size;
     document.getElementById('statDepoimentos').textContent = latestTestimonials.length;
     document.getElementById('statClientes').textContent = latestLeads.length;
     const mesAtual = new Date().getMonth() + 1;
@@ -408,7 +368,6 @@
     document.getElementById('prodImagem').value = '';
     document.getElementById('prodCategoria').value = 'semijoias';
     document.getElementById('prodCanal').value = 'ambos';
-    document.getElementById('prodDestaque').value = 'false';
     prodPreview.src = '';
     uploadStatus.textContent = '';
   }
@@ -438,7 +397,6 @@
       price: document.getElementById('prodPreco').value.trim(),
       category: document.getElementById('prodCategoria').value,
       channel: document.getElementById('prodCanal').value,
-      featured: document.getElementById('prodDestaque').value === 'true',
       imageUrl: document.getElementById('prodImagem').value.trim()
     };
     try{
@@ -465,13 +423,12 @@
           <td>${p.price ? 'R$ ' + p.price : '—'}</td>
           <td>${p.category}</td>
           <td>${p.channel}</td>
-          <td>${p.featured ? 'Sim' : 'Não'}</td>
           <td>
             <button class="btn btn-ghost" data-edit="${p.id}" style="padding:6px 10px;font-size:0.68rem;">Editar</button>
             <button class="btn btn-danger" data-del="${p.id}">Excluir</button>
           </td>
         </tr>`).join('');
-      document.getElementById('prodTable').innerHTML = rows || '<tr><td colspan="7">Nenhum produto cadastrado ainda.</td></tr>';
+      document.getElementById('prodTable').innerHTML = rows || '<tr><td colspan="6">Nenhum produto cadastrado ainda.</td></tr>';
 
       document.querySelectorAll('[data-edit]').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -481,7 +438,6 @@
           document.getElementById('prodPreco').value = p.price || '';
           document.getElementById('prodCategoria').value = p.category || 'semijoias';
           document.getElementById('prodCanal').value = p.channel || 'ambos';
-          document.getElementById('prodDestaque').value = String(!!p.featured);
           document.getElementById('prodImagem').value = p.imageUrl || '';
           prodPreview.src = p.imageUrl || '';
           document.querySelector('[data-tab="produtos"]').click();
@@ -496,64 +452,6 @@
     });
   }
 
-  // ---------- PROMO DO DIA ----------
-  const promoForm = document.getElementById('promoForm');
-  const promoFoto = document.getElementById('promoFoto');
-  const promoPreview = document.getElementById('promoPreview');
-
-  async function loadPromo(){
-    const snap = await getDoc(doc(db, 'promo', 'current'));
-    if(snap.exists()){
-      const p = snap.data();
-      document.getElementById('promoTitulo').value = p.titulo || '';
-      document.getElementById('promoDesconto').value = p.desconto || '';
-      document.getElementById('promoDescricao').value = p.descricao || '';
-      document.getElementById('promoValidade').value = p.validade || '';
-      document.getElementById('promoAtiva').value = String(!!p.ativa);
-      document.getElementById('promoImagem').value = p.imageUrl || '';
-      promoPreview.src = p.imageUrl || '';
-    }
-  }
-
-  promoFoto.addEventListener('change', async () => {
-    const file = promoFoto.files[0];
-    if(!file) return;
-    promoPreview.src = URL.createObjectURL(file);
-    const statusEl = document.getElementById('promoUploadStatus');
-    statusEl.textContent = 'Enviando foto…';
-    try{
-      const path = `promo/${Date.now()}-${file.name}`;
-      const storageRef = ref(storage, path);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
-      document.getElementById('promoImagem').value = url;
-      statusEl.textContent = 'Foto enviada.';
-    }catch(err){
-      statusEl.textContent = 'Erro ao enviar foto: ' + err.message;
-    }
-  });
-
-  promoForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const statusEl = document.getElementById('promoStatus');
-    const data = {
-      titulo: document.getElementById('promoTitulo').value.trim(),
-      desconto: document.getElementById('promoDesconto').value.trim(),
-      descricao: document.getElementById('promoDescricao').value.trim(),
-      validade: document.getElementById('promoValidade').value,
-      ativa: document.getElementById('promoAtiva').value === 'true',
-      imageUrl: document.getElementById('promoImagem').value.trim()
-    };
-    try{
-      await setDoc(doc(db, 'promo', 'current'), data, { merge: true });
-      statusEl.textContent = 'Promo do dia salva.';
-      statusEl.className = 'status-msg ok';
-    }catch(err){
-      statusEl.textContent = 'Erro ao salvar: ' + err.message;
-      statusEl.className = 'status-msg err';
-    }
-  });
-
   // ---------- CONFIGURAÇÕES ----------
   async function loadConfig(){
     const snap = await getDoc(doc(db, 'settings', 'site'));
@@ -565,6 +463,9 @@
       document.getElementById('cfgSub').value = s.sub || '';
       document.getElementById('cfgInstaAtacado').value = s.instagramAtacado || '';
       document.getElementById('cfgInstaVarejo').value = s.instagramVarejo || '';
+      document.getElementById('cfgAddress').value = s.address || '';
+      document.getElementById('cfgHours').value = s.hours || '';
+      document.getElementById('cfgMapsQuery').value = s.mapsQuery || '';
     }
   }
 
@@ -577,7 +478,10 @@
       tagline: document.getElementById('cfgTagline').value.trim(),
       sub: document.getElementById('cfgSub').value.trim(),
       instagramAtacado: document.getElementById('cfgInstaAtacado').value.trim(),
-      instagramVarejo: document.getElementById('cfgInstaVarejo').value.trim()
+      instagramVarejo: document.getElementById('cfgInstaVarejo').value.trim(),
+      address: document.getElementById('cfgAddress').value.trim(),
+      hours: document.getElementById('cfgHours').value.trim(),
+      mapsQuery: document.getElementById('cfgMapsQuery').value.trim()
     };
     try{
       await setDoc(doc(db, 'settings', 'site'), data, { merge: true });
